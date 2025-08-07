@@ -192,7 +192,7 @@ They help enforce **encapsulation** by controlling where a member can be accesse
 
 ####  কেন Access Modifier দরকার?
 
->>✅ Encapsulation বজায় রাখতে  
+✅ Encapsulation বজায় রাখতে  
 ✅ Object কে বাইরের world থেকে protect করতে  
 ✅ শুধুমাত্র প্রয়োজন অনুযায়ী access দিতে  
 
