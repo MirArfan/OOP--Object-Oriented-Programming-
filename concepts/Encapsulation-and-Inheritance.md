@@ -274,5 +274,8 @@ Roll: 101
 এবং তুমি child class-এ constructor না লেখো — তাহলে error হবে।
 
 
-[⬅️ Previous: Class and Object](./class-and-object.md) <<---------------------------->>
-[ Next: Polymorphism ➡️](./Polymorphism.md)
+<br>
+<br>
+
+[⬅️ **Previous**: Class and Object](./class-and-object.md) <<---------------------------->>
+[ **Next**: Polymorphism ➡️](./Polymorphism.md)

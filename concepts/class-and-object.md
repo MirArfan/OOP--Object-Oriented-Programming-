@@ -58,7 +58,7 @@ Name: Alice, Age: 20
 
 **Explanation** :
 Here, student is an object of the Student class. It holds data for a specific student and can call the ShowInfo() method to display that data.
-<br>
+
 <br>
 
 ### ❓ Instance কী?
@@ -66,7 +66,8 @@ Student s1 = new Student();
 এখানে s1 হচ্ছে একটি instance (বা object) — Student ক্লাসের ছাঁচ ব্যবহার করে বানানো একটি বাস্তব ছাত্র।
 
 Instance is a concrete object created based on the structure defined by a class.
-<br>
+
+
 <br>
 
 
@@ -189,6 +190,7 @@ They help enforce **encapsulation** by controlling where a member can be accesse
 | `internal`            | Same project or assembly            |
 | `protected internal`  | Same project or derived classes     |
 
+<br>
 
 ####  কেন Access Modifier দরকার ❓
 
@@ -256,6 +258,9 @@ Name: Nafi, AGE: 32, Email:
 Access modifiers help restrict access to data and methods, increasing **security, reusability**, and **modularity** of your code.
 
 
+<br>
+<br>
 
-[⬅️ Previous: OOP Introduction](/README.md) <<---------------------------->>
-[ Next: Encapsulation and Inheritance ➡️](./Encapsulation-and-Inheritance.md)
+
+[⬅️ **Previous**: OOP Introduction](/README.md) <<---------------------------->>
+[ **Next**: Encapsulation and Inheritance ➡️](./Encapsulation-and-Inheritance.md)

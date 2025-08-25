@@ -1,5 +1,5 @@
 
-# ❓ Polymorphism in OOP
+#  Polymorphism in OOP
 
 Polymorphism means **“many forms.”** It allows a method or object to behave differently depending on how it is used.
 
@@ -277,7 +277,7 @@ Compiler compilation stage এ fixed করে দেয় method call → এট�
 
 - It is the opposite of dynamic binding (runtime binding), where method calls are resolved during program execution.
 
-
+<br>
 
 
 ### ❓ Why is Method Overriding Called Runtime Polymorphism?
@@ -429,7 +429,7 @@ class Program
 
 - Static Binding এর বিপরীত → যেটা compile time এ resolve হয়।
 
-
+<br>
 
 ### ❓ Difference Between Method Overloading and Method Overriding ?
 
@@ -560,9 +560,10 @@ class Program
  Even though c is declared as Course, runtime এ JobInterviewCourse এর overridden method execute হবে।
 
 
+<br>
+<br>
 
 
 
-
-[⬅️ Previous: Encapsulation and Inheritance](./Encapsulation-and-Inheritance.md) <<---------------------------->>
-[ Next: Abstruction and Interface ➡️](./Polymorphism.md)
+[⬅️ **Previous**: Encapsulation and Inheritance](./Encapsulation-and-Inheritance.md) <<---------------------------->>
+[ **Next**: Abstruction and Interface ➡️](./Polymorphism.md)
