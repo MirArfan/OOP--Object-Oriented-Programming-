@@ -1,11 +1,11 @@
 #  Class and Object in OOP (C#)
 
-## What is a Class?
+### What is a Class?
 
 **A class** is a blueprint or template used to create objects.  
 It defines the properties (fields) and behaviors (methods) that the objects created from it will have.
 
-**Class** হলো একটি **blueprint** যা দিয়ে আমরা Object তৈরি করি। Class-এ আমরা একটি বস্তু (object)-এর বৈশিষ্ট্য (properties) এবং আচরণ (methods) সংজ্ঞায়িত করি।
+>**Class** হলো একটি **blueprint** যা দিয়ে আমরা Object তৈরি করি। Class-এ আমরা একটি বস্তু (object)-এর বৈশিষ্ট্য (properties) এবং আচরণ (methods) সংজ্ঞায়িত করি।
 
  the following Student class contains fields like name, id, and email, along with a method ShowInfo() to display student details:
 
@@ -26,11 +26,11 @@ class Student {
 ```
 <br>
 
-##  What is an Object?
+###  What is an Object?
 An object is an **instance** of a class.  
 It is created based on the structure defined by the class and holds real values in its fields. Using an object, we can access the class’s methods and properties.
 
-Object হলো class-এর একটি বাস্তব রূপ (instance)। class কেবল ধারণা দেয়, কিন্তু object সেই ধারণার ভিত্তিতে তৈরি একটি আসল বস্তু। আমরা class থেকে যত খুশি ততগুলো object তৈরি করতে পারি।
+>Object হলো class-এর একটি বাস্তব রূপ (instance)। class কেবল ধারণা দেয়, কিন্তু object সেই ধারণার ভিত্তিতে তৈরি একটি আসল বস্তু। আমরা class থেকে যত খুশি ততগুলো object তৈরি করতে পারি।
 
 
 For example, using the Student class:
@@ -61,7 +61,7 @@ Here, student is an object of the Student class. It holds data for a specific st
 <br>
 <br>
 
-## Instance কী?
+### ❓ Instance কী?
 Student s1 = new Student();
 এখানে s1 হচ্ছে একটি instance (বা object) — Student ক্লাসের ছাঁচ ব্যবহার করে বানানো একটি বাস্তব ছাত্র।
 
@@ -70,14 +70,14 @@ Instance is a concrete object created based on the structure defined by a class.
 <br>
 
 
-## Constructor কী?
+### ❓ Constructor কী?
 
 **Constructor** হচ্ছে একটি special method যেটা কোনো ক্লাস থেকে অবজেক্ট তৈরি করার সময় **স্বয়ংক্রিয়ভাবে (automatically)** কল হয়।  
 এর কাজ হলো অবজেক্ট বানানোর সময় প্রপার্টিগুলোর initial value (প্রাথমিক মান) সেট করে দেওয়া।
 
 
 
-A **constructor** is a special method in a class that is automatically called when an object is created.  
+>A **constructor** is a special method in a class that is automatically called when an object is created.  
 Its purpose is to initialize the object's data (fields).  
 A constructor has the **same name as the class** and does **not have any return type** — not even `void`.
 
@@ -168,12 +168,12 @@ class Program {
 
 <br>
 
-##  Access Modifier কী?
+### ❓ Access Modifier কী?
 
 Access modifiers in OOP define the **visibility and accessibility** of classes, methods, and variables.  
 They help enforce **encapsulation** by controlling where a member can be accessed from.
 
-**Access Modifier** নির্ধারণ করে কোন জায়গা থেকে একটি class, method, variable বা property-তে access (প্রবেশাধিকার) থাকবে।  
+>**Access Modifier** নির্ধারণ করে কোন জায়গা থেকে একটি class, method, variable বা property-তে access (প্রবেশাধিকার) থাকবে।  
 মানে, **কে কোন জিনিস দেখতে/ব্যবহার করতে পারবে — সেটি Access Modifier দ্বারা ঠিক করা হয়।**
 
 
@@ -190,7 +190,7 @@ They help enforce **encapsulation** by controlling where a member can be accesse
 | `protected internal`  | Same project or derived classes     |
 
 
-####  কেন Access Modifier দরকার?
+####  কেন Access Modifier দরকার ❓
 
 ✅ Encapsulation বজায় রাখতে  
 ✅ Object কে বাইরের world থেকে protect করতে  
@@ -198,7 +198,7 @@ They help enforce **encapsulation** by controlling where a member can be accesse
 
 
 
-#### টিপস:
+#### 📝 টিপস:
 
 - সাধারণত sensitive data `private` রাখা হয়।  
 - যখন subclass access দরকার, তখন `protected` ব্যবহার করো।  

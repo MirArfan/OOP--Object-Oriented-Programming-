@@ -34,9 +34,9 @@
 
 ### Topic list
 
-- [✅ Class & Object](./concepts/class-object.md)   
-- [✅ Constructor](./concepts/class-object.md)   
-- [✅ Inheritance and Inheritance](./concepts/Encapsulation-and-Inheritance.md)
+- [✅ Class & Object](./concepts/class-and-object.md)   
+- [✅ Constructor](./concepts/class-and-object.md)   
+- [✅ Encapsulation and Inheritance](./concepts/Encapsulation-and-Inheritance.md)
 - [✅ Polymorphism](./concepts/Polymorphism.md) 
 - [✅ Abstraction and Interface](./concepts/class-and-object.md)  
 

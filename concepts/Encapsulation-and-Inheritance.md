@@ -13,6 +13,8 @@
 - বাইরের ক্লাস থেকে `public` method **(getter/setter)** দিয়ে access/control করা হয়।
 - এটি ডেটাকে **সুরক্ষিত** রাখে এবং **অনাকাঙ্ক্ষিত পরিবর্তন** থেকে বাঁচায়।
 
+<br>
+
 **Encapsulation** is one of the core principles of object-oriented programming. It is the process of **hiding the internal details** of an object and **only exposing necessary parts** through methods or properties. This is typically done by making fields `private` and providing `public` **getters and setters** to access and update them.
 
 Encapsulation helps in:
@@ -30,15 +32,15 @@ Encapsulation helps in:
 
 
 
-#### টিপস:
+#### 📝 টিপস:
 > Constructor না থাকলেও C#-এ একটি **default constructor** থাকে।  
 অর্থাৎ তুমি যদি constructor না লেখো, C# নিজেই একটা implicit constructor দেয়।
 
 ### What are Setter and Getter?
 Answer:
-Setters and getters are user-defined methods that allow controlled access to private fields in a class.
-- A setter sets or updates the value of a private field.
-- A getter returns the value of a private field.
+**Setters** and **getters** are user-defined methods that allow controlled access to private fields in a class.
+- A **setter** sets or updates the value of a private field.
+- A **getter** returns the value of a private field.
  This helps in achieving encapsulation by hiding internal data from direct access.
 
 
@@ -111,12 +113,13 @@ public string Name { get; set; }
 <br>
 <br>
 
-# Inheritance in OOP (C#)
+
+### Inheritance in OOP (C#)
 
 Inheritance is a feature of object-oriented programming where a **child class inherits properties and methods from a parent class**.  
 It allows **code reuse** and helps organize related classes in a hierarchy.
 
-**Inheritance** হলো Object-Oriented Programming-এর এমন একটি বৈশিষ্ট্য, যার মাধ্যমে একটি ক্লাস (child/derived class) অন্য একটি ক্লাসের (parent/base class) প্রপার্টি এবং মেথডগুলো **উত্তরাধিকারসূত্রে গ্রহণ** করতে পারে।
+>**Inheritance** হলো Object-Oriented Programming-এর এমন একটি বৈশিষ্ট্য, যার মাধ্যমে একটি ক্লাস (child/derived class) অন্য একটি ক্লাসের (parent/base class) প্রপার্টি এবং মেথডগুলো **উত্তরাধিকারসূত্রে গ্রহণ** করতে পারে।
 
 <br>
 
@@ -147,7 +150,7 @@ It allows **code reuse** and helps organize related classes in a hierarchy.
 
 
 
-### Single Inheritance 
+### 1. Single Inheritance 
 
 **Single Inheritance** হলো এমন একটি সম্পর্ক যেখানে একটি ক্লাস (child) শুধুমাত্র একটি ক্লাস (parent/base) থেকে প্রপার্টি ও মেথড উত্তরাধিকারসূত্রে পায়।
 
@@ -266,6 +269,6 @@ Age: 22
 Roll: 101
 ```
 
-#### 🔴 Warning:
+#### ⚠️ Warning:
 যদি parent class এ শুধু parameterized constructor থাকে,
 এবং তুমি child class-এ constructor না লেখো — তাহলে error হবে।

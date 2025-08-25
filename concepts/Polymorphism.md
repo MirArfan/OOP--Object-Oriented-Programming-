@@ -1,5 +1,5 @@
 
-#  Polymorphism in OOP
+# ❓ Polymorphism in OOP
 
 Polymorphism means **“many forms.”** It allows a method or object to behave differently depending on how it is used.
 
@@ -133,10 +133,10 @@ class Program
 
 <br>
 
-### 🧩 Why is Method Overloading Called Compile-time Polymorphism?
+### ❓ Why is Method Overloading Called Compile-time Polymorphism?
 
 
-### 🔹 Answer (English):
+### ✅ Answer :
 
 Method Overloading is called **compile-time polymorphism** because the decision about which method to call is made by the **compiler during compilation**, not at runtime.  
 
@@ -152,9 +152,8 @@ This process is called **static binding** or **early binding** because it happen
 <br>
 
 
-#### 🔹 বাংলা ব্যাখ্যা:
 
-Method Overloading-কে **Compile-time Polymorphism** বলা হয় কারণ কোন মেথড চালু হবে সেটা প্রোগ্রাম রান হওয়ার আগে, অর্থাৎ **compile time এ compiler ঠিক করে ফেলে**।  
+>Method Overloading-কে **Compile-time Polymorphism** বলা হয় কারণ কোন মেথড চালু হবে সেটা প্রোগ্রাম রান হওয়ার আগে, অর্থাৎ **compile time এ compiler ঠিক করে ফেলে**।  
 
 Compiler method name আর parameter এর type/number দেখে নির্ধারণ করে দেয় কোন মেথড version call হবে।  
 
@@ -206,7 +205,7 @@ class Program
 
 <br>
 
-### 🔗 What is Static Binding?
+### ❓ What is Static Binding?
 
 
 ### 🔹 Answer:
@@ -281,19 +280,17 @@ Compiler compilation stage এ fixed করে দেয় method call → এট�
 
 
 
-### 🔗 Why is Method Overriding Called Runtime Polymorphism?
+### ❓ Why is Method Overriding Called Runtime Polymorphism?
 
 
-### 🔹 Answer:
+### ✅ Answer:
 
 **Method overriding** is called **runtime polymorphism** because the decision about **which method to call** is made at **runtime**, not at compile time.  
 
 👉 When a **base class reference** points to a **derived class object**, the overridden method in the derived class is called **dynamically** based on the **actual object type**.  
 This is known as **dynamic binding** or **late binding**.  
 
-
-
-### 🔹 বাংলা ব্যাখ্যা:
+<br>
 
 **Method Overriding** কে **Runtime Polymorphism** বলা হয় কারণ method call **program চলাকালীন সময়ে (runtime)** ঠিক হয়।  
 Compile time এ compiler জানে না কোন version run হবে।  
@@ -305,7 +302,7 @@ Compile time এ compiler জানে না কোন version run হবে।
 
 
 
-### 🧪 Example: Course Class
+### ✅ Example: Course Class
 
 ```csharp
 public class Course
@@ -360,11 +357,11 @@ class Program
 
 <br>
 
-### ❓ What is Dynamic Binding?
+### ❓ What is Dynamic Binding ?
 
 
 
-### 🔹 Answer:
+### ✅ Answer:
 
 **Dynamic binding** (also called **late binding**) is the process where the decision about **which method to call** is made at **runtime** instead of compile time.  
 
@@ -372,7 +369,7 @@ class Program
 
 
 
-#### 🔹 বাংলা ব্যাখ্যা:
+<br>
 
 **Dynamic Binding** হলো এমন একটি process যেখানে কোন method call হবে তা **runtime এ ঠিক হয়**।  
 
@@ -384,7 +381,7 @@ class Program
 
 <br>
 
-### 🧪 Example: Course Class
+#### ✅ Example: Course Class
 
 ```csharp
 public class Course
@@ -422,7 +419,7 @@ class Program
 
 - তাই runtime এ call হবে → CompetitiveProgrammingCourse.ShowDetails()
 
-### 🎯 Summary:
+### 📝 Summary:
 
 - Dynamic Binding = method call resolve হয় runtime এ।
 
@@ -434,16 +431,26 @@ class Program
 
 
 
-### ❓ Difference Between Method Overloading and Method Overriding
+### ❓ Difference Between Method Overloading and Method Overriding ?
 
 
-### Answer (English + Bangla)
+### ✅ Answer 
 
 ### 🔹 Method Overloading (Compile-time Polymorphism)
 - 👉 Same method name, but **different parameters (number/type/order)**  
 - 👉 Must be inside the **same class**  
 - 👉 **Compiler** decides which method to call (compile time)  
 - 👉 Known as **Early Binding / Static Binding**  
+
+### In short:
+
+- Overloading = same method name, different parameters, same class, decided at compile time.
+
+
+- Overriding = same method signature, different class (child overrides parent), decided at runtime.
+
+
+<br>
 
 **Example (C#):**
 ```csharp
@@ -504,29 +511,24 @@ class Program
 }
 ```
 
-### In short:
-
-- Overloading = same method name, different parameters, same class, decided at compile time.
-
-
-- Overriding = same method signature, different class (child overrides parent), decided at runtime.
+<br>
 
 
 
-### 🎯 What is a Virtual Method ❓
+### ❓ What is a Virtual Method ?
 
 
 
-### Answer
-
-### ✅  Definition
+### ✅  Answer
 - 👉 A **virtual method** is a method in the **base class** that is declared with the `virtual` keyword.  
 - 👉 This means it can be **overridden** by a **derived (child) class** using the `override` keyword.  
 - 👉 It enables **runtime polymorphism** (dynamic binding).  
 - 👉 At runtime, the **actual object type** decides which method will be executed, not the reference type.  
 
+#### ✅ In short:
+>A virtual method is a base class method that can be overridden in a child class to provide specific behavior, enabling dynamic method dispatch at runtime.
 
-### ✅ Example 
+#### ✅ Example 
 
 ```csharp
 public class Course
@@ -557,6 +559,6 @@ class Program
 ```
  Even though c is declared as Course, runtime এ JobInterviewCourse এর overridden method execute হবে।
 
-#### ✅ In short:
->A virtual method is a base class method that can be overridden in a child class to provide specific behavior, enabling dynamic method dispatch at runtime.
+
+
 
