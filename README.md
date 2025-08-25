@@ -32,21 +32,15 @@
 
 ---
 
-## এই ব্লগে আপনি যেসব বিষয় শিখবেনঃ
+### Topic list
 
-- ✅ Class & Object  
-- ✅ Value Type & Reference Type  
-- ✅ Data Hiding  
-- ✅ Property  
-- ✅ Auto Property  
-- ✅ Constructor, Constructor Overloading, Default Constructor, Constructor Chaining  
-- ✅ One-to-One & One-to-Many Association Relationship, Uses Relationship  
-- ✅ Inheritance  
-- ✅ Polymorphism  
-- ✅ Abstraction  
-- ✅ Interface  
+- [✅ Class & Object](./concepts/class-object.md)   
+- [✅ Constructor](./concepts/class-object.md)   
+- [✅ Inheritance and Inheritance](./concepts/Encapsulation-and-Inheritance.md)
+- [✅ Polymorphism](./concepts/Polymorphism.md) 
+- [✅ Abstraction and Interface](./concepts/class-and-object.md)  
 
 ---
 
-✍️ _এই ফাইলটি তৈরি করেছেন:_ [Mir Arfan Uddin](https://github.com/your-github-username)
+✍️ Mir Arfan Uddin ( Rahat )
 
