@@ -34,6 +34,12 @@ Encapsulation helps in:
 > Constructor না থাকলেও C#-এ একটি **default constructor** থাকে।  
 অর্থাৎ তুমি যদি constructor না লেখো, C# নিজেই একটা implicit constructor দেয়।
 
+### What are Setter and Getter?
+Answer:
+Setters and getters are user-defined methods that allow controlled access to private fields in a class.
+- A setter sets or updates the value of a private field.
+- A getter returns the value of a private field.
+ This helps in achieving encapsulation by hiding internal data from direct access.
 
 
 ####  Example Code: Encapsulation in Action
@@ -130,7 +136,7 @@ It allows **code reuse** and helps organize related classes in a hierarchy.
 
 
 
-## 🔹 Inheritance এর ধরনসমূহ:
+### Inheritance এর ধরনসমূহ:
 
 | ধরন | ব্যাখ্যা |
 |------|---------|
@@ -147,7 +153,7 @@ It allows **code reuse** and helps organize related classes in a hierarchy.
 
 
 
-## ✅ Example Code: Single Inheritance
+#### ✅ Example Code: Single Inheritance
 ```c#
 using System;
 
@@ -211,7 +217,7 @@ Subject: Computer Science
 - এজন্য parent class-এ parameterized constructor থাকতে হবে
 - child class থেকে `base(...)` keyword দিয়ে সেই constructor-এ value পাঠাতে হয়
 
-### Constructor দিয়ে Inheritance
+#### Constructor দিয়ে Inheritance
 ```C#
 using System;
 
