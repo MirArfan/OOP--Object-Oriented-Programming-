@@ -272,3 +272,7 @@ Roll: 101
 #### ⚠️ Warning:
 যদি parent class এ শুধু parameterized constructor থাকে,
 এবং তুমি child class-এ constructor না লেখো — তাহলে error হবে।
+
+
+[⬅️ Previous: Class and Object](./class-and-object.md) <<---------------------------->>
+[ Next: Polymorphism ➡️](./Polymorphism.md)
