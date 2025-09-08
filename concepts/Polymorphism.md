@@ -566,4 +566,4 @@ class Program
 
 
 [⬅️ **Previous**: Encapsulation and Inheritance](./Encapsulation-and-Inheritance.md) <<---------------------------->>
-[ **Next**: Abstruction and Interface ➡️](./Polymorphism.md)
+[ **Next**: Abstruction and Interface ➡️](./Encapsulation-and-Inheritance.md)

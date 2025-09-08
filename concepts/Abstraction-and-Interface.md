@@ -1296,3 +1296,9 @@ Push Sending to ABC123#4$#@#$$456
 Push Log : ABC123#4$#@#$$456
 ----------------------------------
 ```
+
+
+
+
+[⬅️ **Previous**: Polymorpism ](./Polymorphism.md) <<---------------------------->>
+[ **Next**: SOLID ➡️](./Encapsulation-and-Inheritance.md)
