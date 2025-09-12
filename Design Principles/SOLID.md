@@ -1076,111 +1076,277 @@ class Program
 <br>
 <br>
 
-## Liskov Substitution Principle (LSP)
 
-"যে কোনো সাবক্লাস তার বেস ক্লাসকে রিপ্লেস করতে পারবে – কিন্তু প্রোগ্রামের আচরণ যেন নষ্ট না হয়।"
+## 2️⃣ Liskov Substitution Principle (LSP)
 
-অর্থাৎ, একটা সাবক্লাস যদি base class extend করে, তাহলে সেই সাবক্লাস যেখানে-সেখানে base class-এর জায়গায় বসতে পারবে — অথচ কোডের behavior ঠিক থাকবে।
+### 🔹 Definition:
 
-#### 📌 সংজ্ঞা (Definition):
-If class S is a subtype of class T, then objects of type T may be replaced with objects of type S without altering any of the desirable properties of the program.
+- Subtypes must be substitutable for their base types without breaking the program.
+
+- অর্থাৎ child class যেখানে parent class use হয়, সেখানেই একইভাবে কাজ করবে।
+
+- Parent কে replace করে Child বসালে behavior পরিবর্তন হওয়া যাবে না।
+
 
 #### 🎯 সহজ বাংলায়:
-Subclass যদি Parent class-এর behavior পরিবর্তন করে দেয়, তাহলে সেটা LSP ভাঙছে।
+- Subclass যদি Parent class-এর behavior পরিবর্তন করে দেয়, তাহলে সেটা LSP ভাঙছে।
 
+- Subclass যতই extend করুক না কেন, তা যেন parent class-এর contract ভাঙে না।
 
-Subclass যতই extend করুক না কেন, তা যেন parent class-এর contract ভাঙে না।
+####  ❌ খারাপ ডিজাইন : Example 1 
 
-#### ❌ খারাপ ডিজাইন: 
-LSP ভাঙা উদাহরণ
-ধরি, আমরা একটি Rectangle class বানিয়েছি। তারপর Square class বানালাম যেটা Rectangle কে extend করে।
-```c#
-public class Rectangle {
-    public int Width { get; set; }
-    public int Height { get; set; }
-
-    public int GetArea() {
-        return Width * Height;
-    }
-}
-
-
-public class Square : Rectangle {
-    public new int Width {
-        set {
-            base.Width = value;
-            base.Height = value; // Forcefully height set
-        }
-    }
-
-    public new int Height {
-        set {
-            base.Width = value;
-            base.Height = value;
-        }
-    }
-}
-```
-🔴 Main Method:
-```c#
-Rectangle rect = new Square(); // LSP ভাঙছে এখানে!
-rect.Width = 5;
-rect.Height = 10;
-
-Console.WriteLine(rect.GetArea()); // Output: 100? 50? ভুল হতে পারে!
-```
-🔍 সমস্যা:
-Square height ও width সমান করে ফেলে — কিন্তু আমরা ভেবেছিলাম height & width আলাদা থাকবে (Rectangle-এর মতো)
-
-
-Rectangle rect = new Square(); এটা Compile হয়, কিন্তু Run Time এ ভুল result দেয়
-
-
-➡️ LSP বলছে: Square যদি Rectangle কে extend করে, তাহলে Square object ব্যবহার করলে result অপ্রত্যাশিত হওয়া উচিত না।
-
-✅ ভালো ডিজাইন: LSP মেনে
-👉 আমরা Square আর Rectangle কে একসাথে একটা IShape interface-এ রাখব, যেটা শুধুমাত্র Area return করবে।
 
 ```c#
-// Step 1: Interface
-public interface IShape {
-    int GetArea();
-}
+public class Employee
+{
+    public virtual int CalculateSalary()
+    {
+        return 1000000;
+    }
 
-
-// Step 2: Implementations
-
-public class Rectangle : IShape {
-    public int Width { get; set; }
-    public int Height { get; set; }
-
-    public int GetArea() {
-        return Width * Height;
+    public virtual int Bonus()
+    {
+        return 100000;
     }
 }
 
-
-public class Square : IShape {
-    public int Side { get; set; }
-
-    public int GetArea() {
-        return Side * Side;
+public class PermanentEmployee : Employee
+{
+    public override int CalculateSalary()
+    {
+        return 2000000;
     }
 }
 
+public class ContractEmployee : Employee
+{
+    public override int CalculateSalary()
+    {
+        return 1000000;
+    }
 
-// Step 3: Main Method
+    public override int Bonus()
+    {
+        throw new NotImplementedException(); // Problem ❌ // Bonus নেই
+    }
+}
 
-class Program {
-    static void Main() {
-        List<IShape> shapes = new List<IShape> {
-            new Rectangle { Width = 4, Height = 5 },
-            new Square { Side = 5 }
+class Program
+{
+    public static void Main()
+    {
+        List<Employee> employees = new List<Employee>
+        {
+            new PermanentEmployee(),
+            new ContractEmployee()
         };
 
-        foreach (var shape in shapes) {
-            Console.WriteLine("Area: " + shape.GetArea());
+        foreach (var emp in employees)
+        {
+            Console.WriteLine($"Salary: {emp.CalculateSalary()}");
+            Console.WriteLine($"Bonus: {emp.Bonus()}"); // Crash for ContractEmployee
+        }
+    }
+}
+
+```
+#### 🔴  Problems
+
+- ContractEmployee Bonus() support করে না → LSP ভঙ্গ।
+
+- High-level code (Payroll) directly low-level class Employee এ depend করছে → DIP ভঙ্গ।
+###  ✅ Solution (With Interface – DIP + LSP)
+```c#
+//Step 1: Interface তৈরি করি
+public interface IEmployee
+{
+    int CalculateSalary();
+}
+
+public interface IBonusEligibleEmployee : IEmployee
+{
+    int Bonus();
+}
+
+// Step 2: Employee classes implement করবে interface অনুযায়ী
+public class PermanentEmployee : IBonusEligibleEmployee
+{
+    public int CalculateSalary()
+    {
+        return 2000000;
+    }
+
+    public int Bonus()
+    {
+        return 200000;
+    }
+}
+
+public class ContractEmployee : IEmployee
+{
+    public int CalculateSalary()
+    {
+        return 1000000;
+    }
+    // Bonus নেই → Interface implement করছে না → safe
+}
+
+// Step 3: PayrollSystem class (High-level module)
+public class PayrollSystem
+{
+    public void ProcessSalary(IEmployee employee)
+    {
+        Console.WriteLine($"Salary: {employee.CalculateSalary()}");
+    }
+
+    public void ProcessBonus(IBonusEligibleEmployee employee)
+    {
+        Console.WriteLine($"Bonus: {employee.Bonus()}");
+    }
+}
+
+// Step 4: Main method
+class Program
+{
+    static void Main()
+    {
+        IEmployee contract = new ContractEmployee();
+        IBonusEligibleEmployee permanent = new PermanentEmployee();
+
+        PayrollSystem payroll = new PayrollSystem();
+
+        payroll.ProcessSalary(contract);     // ✅ Works
+        payroll.ProcessSalary(permanent);    // ✅ Works
+
+        payroll.ProcessBonus(permanent);     // ✅ Works
+        // payroll.ProcessBonus(contract);  // ❌ Call not allowed → safe
+    }
+}
+```
+#### 🟢 Benefits
+
+- ContractEmployee কে bonus call করা যাবে না, LSP maintained।
+
+- PayrollSystem interface abstraction উপর depend করছে, low-level class direct depend নয় → DIP respected।
+
+- নতুন Employee type যোগ করা সহজ।
+
+<br>
+
+### 💡 Another Example
+ #### ❌ Problem – Coffee Shop Example (LSP ভাঙা)
+```c#
+using System;
+
+namespace LSPExample
+{
+    // Parent class
+    public abstract class Coffee
+    {
+        public abstract string Serve();
+    }
+
+    // Subclass 1: BlackCoffee
+    public class BlackCoffee : Coffee
+    {
+        public override string Serve()
+        {
+            return "Serving Black Coffee ☕";
+        }
+    }
+
+    // Subclass 2: Tea (LSP ভাঙছে)
+    public class Tea : Coffee
+    {
+        public override string Serve()
+        {
+            return "Serving Tea 🍵 instead of Coffee!"; // Problem: Coffee expect করা হচ্ছে, কিন্তু Tea আসছে
+        }
+    }
+
+    class Program
+    {
+        public static void ServeCoffee(Coffee coffee)
+        {
+            Console.WriteLine(coffee.Serve());
+        }
+
+        static void Main(string[] args)
+        {
+            BlackCoffee black = new BlackCoffee();
+            Tea tea = new Tea();
+
+            ServeCoffee(black);  // Output: Serving Black Coffee ☕ ✅
+            ServeCoffee(tea);    // Output: Serving Tea 🍵 instead of Coffee! ❌ LSP ভাঙছে
         }
     }
 }
 ```
+
+#### Problem Note:
+
+>Tea class হলো Coffee এর subclass, কিন্তু Coffee expect করা হচ্ছে coffee, Tea এসেছে → unexpected behavior। তাই Liskov Substitution Principle ভাঙছে।
+
+#### ✅ Solution – LSP মানা
+```c#
+using System;
+
+namespace LSPExample
+{
+    // Parent class (abstract)
+    public abstract class Drink
+    {
+        public abstract string Serve();
+    }
+
+    // Subclass 1: Coffee
+    public class Coffee : Drink
+    {
+        public override string Serve()
+        {
+            return "Serving Coffee ☕";
+        }
+    }
+
+    // Subclass 2: Tea
+    public class Tea : Drink
+    {
+        public override string Serve()
+        {
+            return "Serving Tea 🍵";
+        }
+    }
+
+    class Program
+    {
+        public static void ServeDrink(Drink drink)
+        {
+            Console.WriteLine(drink.Serve());
+        }
+
+        static void Main(string[] args)
+        {
+            Coffee coffee = new Coffee();
+            Tea tea = new Tea();
+
+            ServeDrink(coffee); // Output: Serving Coffee ☕ ✅
+            ServeDrink(tea);    // Output: Serving Tea 🍵 ✅
+        }
+    }
+}
+```
+
+#### Solution Note :
+
+>এখন parent class হলো Drink। Coffee এবং Tea দুটোই Drink এর subclass।
+Function ServeDrink যে কোনো Drink safely handle করতে পারে।
+✅ Liskov Substitution Principle মানা হচ্ছে।
+
+#### 💡 Takeaway (Note):
+
+- Subclass কে parent এর behaviour অনুযায়ী কাজ করতে হবে।
+
+- Parent class expectation ভাঙলে LSP ভেঙে যায়।
+
+- Abstract/general parent বানালে future extension সহজ হয়।
+
