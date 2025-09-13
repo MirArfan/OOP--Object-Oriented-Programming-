@@ -30,9 +30,22 @@
 এই ব্লগে আমরা C# ব্যবহার করে OOP-এর মূল বিষয়গুলোকে সহজভাবে ব্যাখ্যা করব,  
 যাতে একজন শিক্ষার্থী বা নতুন ডেভেলপার **OOP ধারণাগুলো ভালোভাবে অনুধাবন করতে পারে** এবং **বাস্তব প্রজেক্টে প্রয়োগ** করতে পারে।
 
----
+
+## 🔗 OOP, Design Principles & Design Patterns এর সংযোগ
+
+1. **OOP**: কোডকে object-এর মাধ্যমে organize করে, encapsulation, inheritance, polymorphism ও abstraction ব্যবহার করে।  
+2. **Design Principles**: যেমন **SOLID, DRY, KISS, YAGNI**, এগুলো OOP code কে **আরও maintainable, scalable এবং reusable** করে তোলে।  
+3. **Design Patterns**: পুনঃব্যবহারযোগ্য ও battle-tested solution, যা OOP এবং Design Principles অনুসারে **real-world problems** elegantly solve করে।  
+
+**সারসংক্ষেপ:**  
+> OOP শেখার মাধ্যমে আপনি কোড structure শিখেছেন।  
+> Design Principles শেখার মাধ্যমে আপনি structure কে আরও robust ও flexible বানান।  
+> Design Patterns শেখার মাধ্যমে আপনি proven solutions দিয়ে professional software design করতে পারেন।  
+
+
 
 ### Topic list
+## 🟦 Part-1: OOP
 
 - [✅ Class & Object](./concepts/class-and-object.md)   
 - [✅ Constructor](./concepts/class-and-object.md)   
@@ -40,6 +53,16 @@
 - [✅ Polymorphism](./concepts/Polymorphism.md) 
 - [✅ Abstraction and Interface](./concepts/class-and-object.md)  
 
+
+## 🟩 Part-2: Design Principles
+- [✅ KISS YAGNI & DRY Principles](./Design%20Principles/KISS-YAGNI-DRY-principles.md) 
+- [✅ SOLID Principles](./Design%20Principles/SOLID.md)  
+- [✅ Onion Architecture with SOLID Principles](./design-principles/class-05-onion-architecture.md)  
+
+## 🟥 Part-3: Design Patterns
+- [✅ Design Pattern](./design-patterns/class-06-design-pattern.md)  
+- [✅ Abstract Factory and Builder Design Pattern](./design-patterns/class-07-abstract-factory-builder.md)  
+- [✅ Prototype Design Pattern](./design-patterns/class-08-prototype-pattern.md)  
 ---
 
 ✍️ Mir Arfan Uddin ( Rahat )
