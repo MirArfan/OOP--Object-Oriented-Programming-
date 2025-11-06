@@ -1301,4 +1301,4 @@ Push Log : ABC123#4$#@#$$456
 
 
 [⬅️ **Previous**: Polymorpism ](./03_Polymorphism.md) <<---------------------------->>
-[ **Next**: SOLID ➡️](../Design%20Principles/SOLID.md)[ **Next**: KISS-YAGNI-DRY ➡️](../Design%20Principles/KISS-YAGNI-DRY-principles.md)
+[ **Next**: SOLID ➡️](../02_Design_Principles/SOLID.md)[ **Next**: KISS-YAGNI-DRY ➡️](../02_Design_Principles/KISS-YAGNI-DRY-principles.md)

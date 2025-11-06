@@ -59,13 +59,13 @@
 
 
 ## 🟩 Part-2: Design Principles
-- [✅ Introduction to Design Principles](./02_Design_Principles/README.md) 
+- [✅ Introduction to Design Principles](./02_Design_Principles) 
 - [✅ KISS YAGNI & DRY Principles](./02_Design_Principles/KISS-YAGNI-DRY-principles.md) 
 - [✅ SOLID Principles](./02_Design_Principles/SOLID.md)  
 - [✅ Onion Architecture with SOLID Principles](./02_Design_Principles/Onion-Architecture.md)  
 
 ## 🟥 Part-3: Design Patterns
-- [➡️ Introduction to Design Patterns](./03_Desgin_Patterns/README.md) 
+- [➡️ Introduction to Design Patterns](./03_Desgin_Patterns) 
 - [1️⃣ Creational Design Patterns](./03_Desgin_Patterns/01_Creational_Design_Patterns.md)  
 - [2️⃣ Structural Design Patterns](./03_Desgin_Patterns/02_Structural_Design_Patterns.md)  
 - [3️⃣ Behavioral Design Patterns](./03_Desgin_Patterns/03_Behavioral_Design_Patterns.md) 
