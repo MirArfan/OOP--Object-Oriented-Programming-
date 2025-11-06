@@ -17,9 +17,9 @@
 
 - ✅ **Visual Studio-এর মত শক্তিশালী IDE** এবং **.NET লাইব্রেরিগুলোর বিশাল সমর্থন** থাকায় ডেভেলপমেন্ট অনেক দ্রুত ও আরামদায়ক হয়।
 
----
+<br>
 
-## 🎯 OOP শেখা কেন গুরুত্বপূর্ণ?
+### 🎯 OOP শেখা কেন গুরুত্বপূর্ণ?
 
 একজন সফটওয়্যার ডেভেলপারের জন্য OOP শেখা অত্যন্ত গুরুত্বপূর্ণ, কারণ এটি আপনাকে:
 
@@ -30,12 +30,15 @@
 এই ব্লগে আমরা C# ব্যবহার করে OOP-এর মূল বিষয়গুলোকে সহজভাবে ব্যাখ্যা করব,  
 যাতে একজন শিক্ষার্থী বা নতুন ডেভেলপার **OOP ধারণাগুলো ভালোভাবে অনুধাবন করতে পারে** এবং **বাস্তব প্রজেক্টে প্রয়োগ** করতে পারে।
 
+<br>
 
-## 🔗 OOP, Design Principles & Design Patterns এর সংযোগ
+### 🔗 OOP, Design Principles & Design Patterns এর সংযোগ
 
 1. **OOP**: কোডকে object-এর মাধ্যমে organize করে, encapsulation, inheritance, polymorphism ও abstraction ব্যবহার করে।  
 2. **Design Principles**: যেমন **SOLID, DRY, KISS, YAGNI**, এগুলো OOP code কে **আরও maintainable, scalable এবং reusable** করে তোলে।  
 3. **Design Patterns**: পুনঃব্যবহারযোগ্য ও battle-tested solution, যা OOP এবং Design Principles অনুসারে **real-world problems** elegantly solve করে।  
+
+<br>
 
 **সারসংক্ষেপ:**  
 > OOP শেখার মাধ্যমে আপনি কোড structure শিখেছেন।  
@@ -43,26 +46,30 @@
 > Design Patterns শেখার মাধ্যমে আপনি proven solutions দিয়ে professional software design করতে পারেন।  
 
 
+<br>
 
-### Topic list
+
 ## 🟦 Part-1: OOP
 
-- [✅ Class & Object](./concepts/01_Class-and-Object.md)   
-- [✅ Constructor](./concepts/01_Class-and-Object.md)   
-- [✅ Encapsulation and Inheritance](./concepts/02_Encapsulation-and-Inheritance.md)
-- [✅ Polymorphism](./concepts/03_Polymorphism.md) 
-- [✅ Abstraction and Interface](./concepts/04_Abstraction-and-Interface.md)  
+- [✅ Class & Object](./01_OOP/01_Class-and-Object.md)   
+- [✅ Constructor](./01_OOP/01_Class-and-Object.md)   
+- [✅ Encapsulation and Inheritance](./01_OOP/02_Encapsulation-and-Inheritance.md)
+- [✅ Polymorphism](./01_OOP/03_Polymorphism.md) 
+- [✅ Abstraction and Interface](./01_OOP/04_Abstraction-and-Interface.md)  
 
 
 ## 🟩 Part-2: Design Principles
-- [✅ KISS YAGNI & DRY Principles](./Design%20Principles/KISS-YAGNI-DRY-principles.md) 
-- [✅ SOLID Principles](./Design%20Principles/SOLID.md)  
-- [✅ Onion Architecture with SOLID Principles](./design-principles/class-05-onion-architecture.md)  
+- [✅ Introduction to Design Principles](./02_Design_Principles/README.md) 
+- [✅ KISS YAGNI & DRY Principles](./02_Design_Principles/KISS-YAGNI-DRY-principles.md) 
+- [✅ SOLID Principles](./02_Design_Principles/SOLID.md)  
+- [✅ Onion Architecture with SOLID Principles](./02_Design_Principles/Onion-Architecture.md)  
 
 ## 🟥 Part-3: Design Patterns
-- [✅ Design Pattern](./design-patterns/class-06-design-pattern.md)  
-- [✅ Abstract Factory and Builder Design Pattern](./design-patterns/class-07-abstract-factory-builder.md)  
-- [✅ Prototype Design Pattern](./design-patterns/class-08-prototype-pattern.md)  
+- [➡️ Introduction to Design Patterns](./03_Desgin_Patterns/README.md) 
+- [1️⃣ Creational Design Patterns](./03_Desgin_Patterns/01_Creational_Design_Patterns.md)  
+- [2️⃣ Structural Design Patterns](./03_Desgin_Patterns/02_Structural_Design_Patterns.md)  
+- [3️⃣ Behavioral Design Patterns](./03_Desgin_Patterns/03_Behavioral_Design_Patterns.md) 
+
 ---
 
 ✍️ Mir Arfan Uddin ( Rahat )
