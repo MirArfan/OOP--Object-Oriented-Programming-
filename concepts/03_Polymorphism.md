@@ -565,5 +565,5 @@ class Program
 
 
 
-[⬅️ **Previous**: Encapsulation and Inheritance](./Encapsulation-and-Inheritance.md) <<---------------------------->>
-[ **Next**: Abstruction and Interface ➡️](./Encapsulation-and-Inheritance.md)
+[⬅️ **Previous**: Encapsulation and Inheritance](./02_Encapsulation-and-Inheritance.md) <<---------------------------->>
+[ **Next**: Abstruction and Interface ➡️](./04_Abstraction-and-Interface.md)

@@ -263,4 +263,4 @@ Access modifiers help restrict access to data and methods, increasing **security
 
 
 [⬅️ **Previous**: OOP Introduction](/README.md) <<---------------------------->>
-[ **Next**: Encapsulation and Inheritance ➡️](./Encapsulation-and-Inheritance.md)
+[ **Next**: Encapsulation and Inheritance ➡️](./02_Encapsulation-and-Inheritance.md)

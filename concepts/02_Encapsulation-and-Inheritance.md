@@ -277,5 +277,5 @@ Roll: 101
 <br>
 <br>
 
-[⬅️ **Previous**: Class and Object](./class-and-object.md) <<---------------------------->>
-[ **Next**: Polymorphism ➡️](./Polymorphism.md)
+[⬅️ **Previous**: Class and Object](./01_Class-and-Object.md) <<---------------------------->>
+[ **Next**: Polymorphism ➡️](./03_Polymorphism.md)

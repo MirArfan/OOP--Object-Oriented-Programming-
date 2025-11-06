@@ -47,11 +47,11 @@
 ### Topic list
 ## 🟦 Part-1: OOP
 
-- [✅ Class & Object](./concepts/class-and-object.md)   
-- [✅ Constructor](./concepts/class-and-object.md)   
-- [✅ Encapsulation and Inheritance](./concepts/Encapsulation-and-Inheritance.md)
-- [✅ Polymorphism](./concepts/Polymorphism.md) 
-- [✅ Abstraction and Interface](./concepts/class-and-object.md)  
+- [✅ Class & Object](./concepts/01_Class-and-Object.md)   
+- [✅ Constructor](./concepts/01_Class-and-Object.md)   
+- [✅ Encapsulation and Inheritance](./concepts/02_Encapsulation-and-Inheritance.md)
+- [✅ Polymorphism](./concepts/03_Polymorphism.md) 
+- [✅ Abstraction and Interface](./concepts/04_Abstraction-and-Interface.md)  
 
 
 ## 🟩 Part-2: Design Principles
