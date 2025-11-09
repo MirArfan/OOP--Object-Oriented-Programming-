@@ -146,20 +146,23 @@ public class Program
 {
     public static void Main()
     {
-        ICoffee myCoffee = new SimpleCoffee();
-        Console.WriteLine($"{myCoffee.GetDescription()} = ${myCoffee.GetCost()}");
+        ICoffee coffee = new SimpleCoffee();
+        Console.WriteLine(coffee.GetDescription() + " $" + coffee.GetCost());
 
-        myCoffee = new MilkDecorator(myCoffee);
-        myCoffee = new SugarDecorator(myCoffee);
+        coffee = new MilkDecorator(coffee);
+        Console.WriteLine(coffee.GetDescription() + " $" + coffee.GetCost());
 
-        Console.WriteLine($"{myCoffee.GetDescription()} = ${myCoffee.GetCost()}");
+        coffee = new SugarDecorator(coffee);
+        Console.WriteLine(coffee.GetDescription() + " $" + coffee.GetCost());
+    
     }
 }
 ```
 🧾 Output
 ```
-Simple Coffee = $5
-Simple Coffee, Milk, Sugar = $7
+Simple Coffee $10
+Simple Coffee, Milk $12
+Simple Coffee, Milk, Sugar $13
 ```
 
 

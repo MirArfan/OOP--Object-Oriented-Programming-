@@ -49,7 +49,97 @@ Client → Target (Interface)
            ↑
         Adaptee (Existing class)
 ````
+### 🔌 Example 1 : Adapter Pattern
+```c#
+using System;
+using System.Xml.Linq;
+using Newtonsoft.Json;
 
+// Step 1: Target Interface (client expects this)
+public interface IXmlData {
+    string GetXmlData();
+}
+
+// Step 2: Adaptee (incompatible class)
+public class JsonData {
+    private string _json;
+
+    public JsonData(string json) {
+        _json = json;
+    }
+
+    public string GetJsonData() {
+        return _json;
+    }
+}
+
+// Step 3: Adapter Class
+public class JsonToXmlAdapter : IXmlData {
+    private JsonData _jsonData;
+
+    public JsonToXmlAdapter(JsonData jsonData) {
+        _jsonData = jsonData;
+    }
+
+    public string GetXmlData() {
+        // Convert JSON → XML
+        string json = _jsonData.GetJsonData();
+        var xml = JsonConvert.DeserializeXNode("{\"Root\":" + json + "}", "Root");
+        return xml.ToString();
+    }
+}
+
+// Step 4: Client
+class Program {
+    static void Main(string[] args) {
+        // Suppose our new system gives JSON:
+        string json = "{ \"name\": \"Mir Arfan\", \"role\": \"Developer\" }";
+
+        // Old system expects XML, so we use adapter
+        JsonData jsonData = new JsonData(json);
+        IXmlData xmlAdapter = new JsonToXmlAdapter(jsonData);
+
+        Console.WriteLine("---- JSON Data ----");
+        Console.WriteLine(jsonData.GetJsonData());
+
+        Console.WriteLine("\n---- Converted XML Data ----");
+        Console.WriteLine(xmlAdapter.GetXmlData());
+    }
+}
+
+```
+🧾 Output
+```
+---- JSON Data ----
+{ "name": "Mir Arfan", "role": "Developer" }
+
+---- Converted XML Data ----
+<Root>
+  <name>Mir Arfan</name>
+  <role>Developer</role>
+</Root>
+```
+### 🔍 Explanation Table
+
+| Step | Class / Interface | Description |
+|------|--------------------|--------------|
+| 1️⃣ | `IXmlData` | Target interface (old system expects XML from this). |
+| 2️⃣ | `JsonData` | New class that produces JSON data. |
+| 3️⃣ | `JsonToXmlAdapter` | Converts JSON → XML so old system can still work. |
+| 4️⃣ | `Program` | Client — uses the adapter to get XML from JSON. |
+
+
+
+### 🧠  ব্যাখ্যা
+
+আমাদের পুরনো সিস্টেম **XML data** নিয়ে কাজ করে।  
+কিন্তু নতুন সিস্টেম data দেয় **JSON format** এ।  
+দুটো format একে অপরের সাথে **compatible না**।  
+
+তাই **Adapter (`JsonToXmlAdapter`)** ব্যবহার করে **JSON কে XML-এ রূপান্তর** করা হলো।  
+
+👉 মানে Adapter দুই দিকের মধ্যে **translator হিসেবে কাজ করছে** —  
+পুরনো সিস্টেম (XML) এবং নতুন সিস্টেম (JSON) এর মধ্যে সংযোগ স্থাপন করে।
 
 
 ### 🔌 Example : Adapter Pattern
