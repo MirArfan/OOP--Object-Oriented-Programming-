@@ -3,24 +3,24 @@
 ---
 
 ## 🔹 Introduction (English)
-Structural design patterns are about how classes and objects are combined or composed to form larger structures.  
+**Structural design patterns** are about how **classes and objects are combined** or **composed** to form larger structures.  
 They focus on class composition, object relationships, and how to make them flexible and efficient.  
 
 ➡️ **In simple terms:**  
-They help you design how different parts of your system connect together — without making your code tightly coupled.
+They help you design **how different parts of your system connect together** — without making your code tightly coupled.
 
 
 
-
+➡️  
 Structural design pattern মূলত বলে কীভাবে ক্লাস এবং অবজেক্টগুলোকে একসাথে সংগঠিত বা সংযুক্ত করা হবে।  
 এর লক্ষ্য হলো structure (গঠন) তৈরি করা যাতে কোড reusable, maintainable, এবং low-coupled হয়।  
 
 সহজভাবে বললে,  
-**“Structural pattern শেখায়, সিস্টেমের বিভিন্ন অংশ কীভাবে সুন্দরভাবে একসাথে কাজ করবে।”**
+>**“Structural pattern শেখায়, সিস্টেমের বিভিন্ন অংশ কীভাবে সুন্দরভাবে একসাথে কাজ করবে।”**
 
----
+<br>
 
-## 🧩 List of Structural Design Patterns
+### 🧩 List of Structural Design Patterns
 
 | # | Pattern Name | Description  |  ব্যাখ্যা |
 |---|---------------|------------------------|----------------|
@@ -32,9 +32,9 @@ Structural design pattern মূলত বলে কীভাবে ক্লা
 | 6 | **Flyweight Pattern** | Reduces memory usage by sharing common data between similar objects. | একই ধরণের অবজেক্টগুলোর সাধারণ ডেটা শেয়ার করে মেমরি সাশ্রয় করে। |
 | 7 | **Proxy Pattern** | Provides a placeholder or substitute for another object to control access. | আসল অবজেক্টে অ্যাক্সেস নিয়ন্ত্রণ করতে “প্রক্সি” অবজেক্ট ব্যবহার করে। |
 
----
+<br>
 
-## 🧠 In Short
+### 🧠 In Short
 
 | Concept | Meaning |
 |----------|----------|
@@ -42,4 +42,4 @@ Structural design pattern মূলত বলে কীভাবে ক্লা
 | **Focus** | Composition, delegation, and object relationships |
 | **Analogy** | Like connecting different LEGO pieces to build a strong structure |
 
----
+
