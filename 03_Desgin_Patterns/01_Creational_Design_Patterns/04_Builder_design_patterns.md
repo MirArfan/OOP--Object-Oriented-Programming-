@@ -191,6 +191,8 @@ PSU: 850W
 
 >এ কারণেই Builder Pattern ব্যবহার করা হয়।
 
+<br>
+
 ### ✅ Builder Pattern Solution
 
 ➡️ Step by Step object তৈরির সুবিধা
@@ -203,7 +205,10 @@ PSU: 850W
 
 ### ✔️ Builder Pattern 
 ```C#
-/// Computer Class
+using System;
+///////////////////////
+/// Computer Class ////
+///////////////////////
 public class Computer
 {
     public string CPU { get; set; }
@@ -222,8 +227,9 @@ public class Computer
 // ToString() override করা হয়েছে যাতে simple print করা যায়
 
 
-
-//// Abstract Builder
+///////////////////////
+//// Abstract Builder//
+///////////////////////
 public abstract class ComputerBuilder
 {
     protected Computer computer = new Computer();
@@ -245,9 +251,10 @@ public abstract class ComputerBuilder
 // GetComputer() দিয়ে final Computer object পাওয়া যায়
 
 
-
-//// Concrete Builders
-////🎮 Gaming PC Builder
+///////////////////////////
+//// Concrete Builders ////
+////🎮 Gaming PC Builder //
+////////////////////////////
 public class GamingPCBuilder : ComputerBuilder
 {
     public override void BuildCPU() => computer.CPU = "Intel i9";
@@ -256,8 +263,9 @@ public class GamingPCBuilder : ComputerBuilder
     public override void BuildStorage() => computer.Storage = "1TB NVMe SSD";
     public override void BuildPSU() => computer.PSU = "850W Gold";
 }
-
-/// 💼 Office PC Builder
+////////////////////////////
+/// 💼 Office PC Builder////
+////////////////////////////
 public class OfficePCBuilder : ComputerBuilder
 {
     public override void BuildCPU() => computer.CPU = "Intel i5";
@@ -272,8 +280,9 @@ public class OfficePCBuilder : ComputerBuilder
 
 
 
-
-//// Director
+///////////////////
+//// Director//////
+///////////////////
 public class ComputerDirector
 {
     public void Build(ComputerBuilder builder)
@@ -432,7 +441,6 @@ public class Pizza
     }
 }
 // Pizza-এর সব attributes আছে (Size, Crust, Toppings, Sauce…)
-
 // ToString() override করে সুন্দরভাবে Pizza-এর details print করার ব্যবস্থা করা হয়েছে।
 
 
