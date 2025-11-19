@@ -574,14 +574,15 @@ Drawing SHARED tree at (4, 14)
 ### 📉 Memory Usage After Flyweight
 Before Flyweight
 
-50,000 trees × 25 MB = 1.2 TB
+- 50,000 trees × 25 MB = 1.2 TB
 
 After Flyweight
 
-Flyweight stored once: ~25 MB
-50,000 lightweight nodes ~ few MB
+- Flyweight stored once: ~25 MB
+- 50,000 lightweight nodes ~ few MB
 
 ➡ >99% memory saved
+
 ➡ Game runs smoothly
 
 
