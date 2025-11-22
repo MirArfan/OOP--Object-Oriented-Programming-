@@ -1,4 +1,4 @@
-#  Class and Object in OOP (C#)
+#  Class and Object in OOP
 
 ### What is a Class?
 
@@ -27,10 +27,19 @@ class Student {
 <br>
 
 ###  What is an Object?
-An object is an **instance** of a class.  
+An object is an **instance** of a class.
+
+It represents a real-world entity and contains:
+
+- State (data/attributes)
+
+- Behavior (methods/functions)
+
+Objects allow you to model real-world things in code.
+
+
 It is created based on the structure defined by the class and holds real values in its fields. Using an object, we can access the class’s methods and properties.
 
->Object হলো class-এর একটি বাস্তব রূপ (instance)। class কেবল ধারণা দেয়, কিন্তু object সেই ধারণার ভিত্তিতে তৈরি একটি আসল বস্তু। আমরা class থেকে যত খুশি ততগুলো object তৈরি করতে পারি।
 
 
 For example, using the Student class:
@@ -67,18 +76,40 @@ Student s1 = new Student();
 
 Instance is a concrete object created based on the structure defined by a class.
 
+Instance মানে হলো “class থেকে তৈরি হওয়া নির্দিষ্ট কপি।”
+এই কপিটি যখন **memory তে তৈরি হয়**, তখন সেটিকে আমরা object বলি।
+
+অর্থাৎ—
+
+- প্রতিটি object হলো instance
+
+- কিন্তু "instance" → class এর সাথে সম্পর্ক বোঝায়
+
+- আর "object" → memory তে থাকা আসল জিনিস বোঝায়
+
+**Example**:
+
+`Car myCar = new Car()`;
+
+- myCar হলো object, কারণ এটা মেমোরিতে আছে
+
+- একই সাথে myCar হলো Car class এর instance
+
+<br>
+
+|Term |	Focus	|Meaning | 
+|----|----| ----|
+|Instance|	Relation to class	|A specific copy of a class|
+|Object|	Existence in memory	|The instance stored in memory|
 
 <br>
 
 
-### ❓ Constructor কী?
-
-**Constructor** হচ্ছে একটি special method যেটা কোনো ক্লাস থেকে অবজেক্ট তৈরি করার সময় **স্বয়ংক্রিয়ভাবে (automatically)** কল হয়।  
-এর কাজ হলো অবজেক্ট বানানোর সময় প্রপার্টিগুলোর initial value (প্রাথমিক মান) সেট করে দেওয়া।
+### ❓ Constructor কী ?
 
 
 
->A **constructor** is a special method in a class that is automatically called when an object is created.  
+A **constructor** is a special method in a class that is **automatically called** when an object is created.  
 Its purpose is to initialize the object's data (fields).  
 A constructor has the **same name as the class** and does **not have any return type** — not even `void`.
 
@@ -93,7 +124,7 @@ A constructor has the **same name as the class** and does **not have any return 
 
 
 ####  সাধারণ নিয়ম:
-- কনস্ট্রাক্টরের নাম ক্লাসের নামের মতোই হতে হবে।  or __constructor() // in php
+- কনস্ট্রাক্টরের নাম ক্লাসের নামের মতোই হতে হবে ।  or `__constructor()`  in php
 - এতে **return type থাকে না** (void, int ইত্যাদি কিছুই না)।  
 - চাইলে parameter সহ বা parameter ছাড়া constructor বানাতে পারো।
 
@@ -110,12 +141,14 @@ class Student {
     public int age;
 
     // Constructor
-    public Student() {
+    public Student() 
+    {
         name = "Unknown";
         age = 0;
     }
 
-    public void ShowInfo() {
+    public void ShowInfo() 
+    {
         Console.WriteLine("Name: {0}, Age: {1}", name, age);
     }
 }
@@ -148,7 +181,7 @@ class Student {
 class Program {
     static void Main() {
         Student s1 = new Student("Arfan", 22);
-        s1.ShowInfo();  // Output: Name: Arfan, Age: 28 
+        s1.ShowInfo();  // Output: Name: Arfan, Age: 17 
     }
 }
 
@@ -211,13 +244,15 @@ They help enforce **encapsulation** by controlling where a member can be accesse
 
 #### ✅ উদাহরণ (C#):
 ```csharp
-class Student {
+using System;
+
+class Person {
     public string name;          // Can be accessed from anywhere
     private int age;             // Can only be accessed inside this class
     protected string email;      // Can be accessed in this class and derived classes
 
     public void SetAge(int age) {
-        this->age = age;
+        this.age = age;
     }
 
     public void ShowInfo() {
@@ -225,33 +260,38 @@ class Student {
     }
 
 }
+
+class Student: Person {
+    public void SetEmail(string mail) {
+        this.email = mail;   // allowed (protected)
+    }
+}
 ```
 
 #### ✅ Usage
 
 ```csharp
-class Student: Person {
-    public void ShowEmail() {
-        Console.WriteLine(email);  // ✅ Access from child class
+class Program
+{
+    static void Main()
+    {
+        Student s1 = new Student();
+        s1.name = "Nafi";                 // ✅ (public)
+        // s1.age = 32;                   // ❌ (private) Error: 'age' is inaccessible due to its protection level
+
+        // s1.email = "a@b.com";          // ❌ Error (protected)
+        s1.SetEmail("a@b.com");         // ✅ (uses method to set protected field)
+        s1.SetAge(32);                    // ✅ (uses method to set private field)
+        s1.ShowInfo();
     }
 }
-
-Student s1 = new Student();
-s1.name = "Nafi";                 // ✅ (public)
-// s1.age = 32;                   // ❌ (private) Error: 'age' is inaccessible due to its protection level
-
-// s1.email = "a@b.com";          // ❌ Error (protected)
-
-s1.SetAge(32);                    // ✅ (uses method to set private field)
-s1.ShowInfo();
-
-
 ```
+
 কিন্তু SetAge() এবং GetAge() method দিয়ে করা যাবে — এটাকেই বলে **Encapsulation**।
 
 ✅ Output:
 ```
-Name: Nafi, AGE: 32, Email:
+Name: Nafi, AGE: 32, Email: a@b.com
 ```
 
 **Explanation**:
