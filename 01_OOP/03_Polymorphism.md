@@ -1,5 +1,5 @@
 
-#  Polymorphism in OOP
+#  ✅ Polymorphism in OOP
 
 Polymorphism means **“many forms.”** It allows a method or object to behave differently depending on how it is used.
 
@@ -7,9 +7,9 @@ Polymorphism means **“many forms.”** It allows a method or object to behave 
 
 
 
-### Polymorphism-এর ধরন (Types)
+### Polymorphism- (Types)
 
-| ধরন                   | ব্যাখ্যা                                         |
+| Type                   | Explanation                                         |
 |------------------------|--------------------------------------------------|
 | Compile-time Polymorphism | Method Overloading (same method, different parameters) |
 | Run-time Polymorphism     | Method Overriding (base & derived class behavior change) |
@@ -138,7 +138,7 @@ class Program
 
 ### ✅ Answer :
 
-Method Overloading is called **compile-time polymorphism** because the decision about which method to call is made by the **compiler during compilation**, not at runtime.  
+Method Overloading is called **compile-time polymorphism** because the decision about which method to **call is made by the compiler** during compilation, not at runtime.  
 
 👉 When you call an overloaded method, the compiler checks:
 - The **method name**  
@@ -155,7 +155,7 @@ This process is called **static binding** or **early binding** because it happen
 
 >Method Overloading-কে **Compile-time Polymorphism** বলা হয় কারণ কোন মেথড চালু হবে সেটা প্রোগ্রাম রান হওয়ার আগে, অর্থাৎ **compile time এ compiler ঠিক করে ফেলে**।  
 
-Compiler method name আর parameter এর type/number দেখে নির্ধারণ করে দেয় কোন মেথড version call হবে।  
+ 
 
 
 
@@ -212,8 +212,7 @@ class Program
 
 **Static binding** (also called **early binding**) is the process where the **compiler determines** which method or function to call at **compile time**, before the program runs.  
 
-> **Static Binding** বা **Early Binding** মানে হলো method call কোনটা execute হবে সেটা **compiler compile time এ ঠিক করে ফেলে**।  
-Runtime এ গিয়ে আর খুঁজতে হয় না। 
+
 
 👉 This happens when:
 - The method call is resolved based on the **reference type**  
@@ -269,13 +268,13 @@ Compiler compilation stage এ fixed করে দেয় method call → এট�
 
 
 #### 📝 Summary:
-- Static binding means method calls are resolved during compilation.
+- Static binding means method calls are **resolved during compilation**.
 
 
-- It makes program execution faster because no method lookup is needed at runtime.
+- It makes program **execution faster** because no method lookup is needed at runtime.
 
 
-- It is the opposite of dynamic binding (runtime binding), where method calls are resolved during program execution.
+- It is the opposite of **dynamic binding (runtime binding)**, where method calls are resolved during program execution.
 
 <br>
 
