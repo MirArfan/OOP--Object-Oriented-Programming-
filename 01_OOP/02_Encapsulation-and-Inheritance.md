@@ -1,5 +1,7 @@
 #   Encapsulation কী?
 
+**Encapsulation** is the process of **bundling data and methods into a single unit (class)** and **protecting the data** using access modifiers.
+
 ### 🟩 Definationa :
 **Encapsulation** is one of the core principles of object-oriented programming. It is the process of **hiding the internal details** of an object and **only exposing necessary parts** through methods or properties.
 

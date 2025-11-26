@@ -1,11 +1,11 @@
-#  Abstraction in OOP (C#)
+#  Abstraction in OOP
 
 
 
 ### ✅ Definition
 
 
-**Abstraction** means **hiding the complex internal details** and **showing only the necessary features of an object**. It helps you focus on what an object does instead of how it does it.
+**Abstraction** means **hiding complex internal implementation** and **showing only the necessary features of an object**. It helps you focus on **what an object does** instead of **how it does it**.
 
 >Abstraction হলো OOP-এর একটি principle যা **অপ্রয়োজনীয় details লুকিয়ে রেখে গুরুত্বপূর্ণ বিষয়গুলো প্রকাশ করে।**  
 - User কে দেখায় **what the object does**, **how it does** তা নয়।  
