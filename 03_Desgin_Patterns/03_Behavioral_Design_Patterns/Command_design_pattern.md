@@ -257,7 +257,7 @@ class Program
 ```
 
 Output :
-```
+```yaml
 ▶ Executing Command...
 🔆 Light is ON
 ▶ Executing Command...
@@ -416,7 +416,7 @@ class Program
 ```
 
 ✅ Console Output
-```
+```yaml
 Fan is ON
 Fan speed set to 3
 Fan is OFF
