@@ -1,4 +1,4 @@
-# ⭐ Command Design Pattern — Definition (Bangla + English)
+# ⭐ Command Design Pattern
 
 ### 📌Definition  
 
@@ -29,30 +29,20 @@ This separates the sender of the request from the actual execution logic.
   
 Without this pattern, the caller directly depends on the receiver, making the system tightly coupled and difficult to modify or extend.
 
-<br>
 
-### 🏢 Real-World Examples
-
-| Real Example            |       |
-|----------------------------------|---------------------------------------------|
-| TV Remote sends command to TV     | Remote বোতাম চাপলে TV কাজ করে              |
-| Restaurant Waiter passes order    | Waiter order নেয় → Chef execute করে        |
-| Text Editor Undo/Redo history     | প্রতিটি action আলাদা command হিসেবে store হয় |
 
 <br>
 
 
 ### 📌 Use Cases 
 
-|                      |
-|----------------------------------------|
-|1. Remote Control Systems — each action = command |
-|2.  GUI Button Actions / Menu Click        |
-| 3. Undo/Redo Support (Editor, Game)       |
-| 4. Task Queue / Job Scheduling            |
-| 5. Transactional Operations               |
-| 6. Macro Recording (Multiple commands run at once) |
-| 7. Smart Home Automation                  |
+ 1. Remote Control Systems — each action = command 
+ 2.  GUI Button Actions / Menu Click        
+ 3. Undo/Redo Support (Editor, Game)       
+ 4. Task Queue / Job Scheduling            
+ 5. Transactional Operations               
+ 6. Macro Recording (Multiple commands run at once) 
+ 7. Smart Home Automation                  
 
 
 
