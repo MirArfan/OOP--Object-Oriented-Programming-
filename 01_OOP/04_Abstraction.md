@@ -7,8 +7,7 @@
 
 **Abstraction** means **hiding complex internal implementation** and **showing only the necessary features of an object**. It helps you focus on **what an object does** instead of **how it does it**.
 
->Abstraction হলো OOP-এর একটি principle যা **অপ্রয়োজনীয় details লুকিয়ে রেখে গুরুত্বপূর্ণ বিষয়গুলো প্রকাশ করে।**  
-- User কে দেখায় **what the object does**, **how it does** তা নয়।  
+ 
 
 ### How to achieve Abstraction in C#
 1. **Abstract class**  
@@ -47,6 +46,8 @@ An **abstract class** is a class that **cannot be instantiated directly**. It ma
     
 
 We use abstract classes when we want to define a **common structure** for all subclasses, but **leave the specific implementation** to the subclasses.
+
+>An abstract class **cannot be instantiated**, which means you **cannot create an object directly from it**.
 
 <br>
 
@@ -101,11 +102,12 @@ class Program
 
 - Parent class এ রাখা হয় common properties/methods → যেগুলো সব ধরনের child class-এ একইভাবে থাকবে।
 
--   -  উদাহরণ: Amount এবং TransactionId সব payment system-এর জন্য common।
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;উদাহরণ: Amount এবং TransactionId সব payment system-এর জন্য common।
 
 - Child class এ implement করা হয় specific behavior → যেগুলো child-এর জন্য আলাদা।
 
-- - উদাহরণ: ValidatePayment() এবং ProcessPayment() → প্রতিটি payment system ভিন্নভাবে কাজ করে।
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;উদাহরণ: ValidatePayment() এবং ProcessPayment() → প্রতিটি payment system ভিন্নভাবে কাজ করে।
+
 
 - এই কারণে আমরা এগুলোর জন্য **abstract method** ব্যবহার করি, যেন **child class**-গুলো তাদের নিজস্ব নিয়মে এগুলো implement করে।
 
@@ -210,7 +212,7 @@ TransactionId: 1234567893223343
 <br>
 <br>
 
-# Interface in C#
+# Interface in OOP
 ### ✅ Definition
 
 An interface is a contract that defines what a class must do, but not how it will do it.
@@ -218,13 +220,13 @@ An interface is a contract that defines what a class must do, but not how it wil
 
 
 
--   It only contains method signatures (no implementation).  
+-   It **only contains method signatures** (no implementation).  
       
     
 -   A class that implements the interface must provide the implementation for all its methods.  
       
     
--   Interfaces support multiple inheritance (a class can implement multiple interfaces).  
+-   Interfaces **support multiple inheritance** (a class can implement multiple interfaces).  
       
     
 
@@ -317,7 +319,7 @@ Status of Bkash
       কিন্তু তার implementation থাকে না।
     Rules:
       - যদি কোনো class interface implement করে,
-        তাহলে interface-এর সমস্ত method অবশ্যই `override` করতে হবে।
+        তাহলে interface-এর সমস্ত method অবশ্যই implement করতে হবে।
       - **Interface** implement করলে সব method-এর implementation দেওয়া বাধ্যতামূলক। <br>
       - **Example_Use:** ->
       যখন তুমি শুধু structure বা contract define করতে চাও, তখন interface ব্যবহার করা হয়।
@@ -328,9 +330,9 @@ Status of Bkash
       কিন্তু অন্য class-এর জন্য base class হতে পারে।
     Rules:
       - **Abstract class**-এর মধ্যে কিছু method abstract হতে পারে,
-        যেগুলো অবশ্যই child class-এ override করতে হবে।
+        যেগুলো অবশ্যই child class-এ `override` করতে হবে।
       - Abstract class-এ concrete methods ও থাকতে পারে,
-        যেগুলো override করা বাধ্যতামূলক নয় (যদি behavior change না করতে চাও)। <br>
+        যেগুলো `override` করা বাধ্যতামূলক নয় (যদি behavior change না করতে চাও)। <br>
      - Example_Use: >
       যখন তুমি common behavior define করতে চাও কিন্তু কিছু method child class-এ 
       customize করতে হবে, তখন abstract class ব্যবহার করা হয়।
@@ -388,9 +390,9 @@ public class Cat : Animal
 -   Cat class Animal abstract class কে extend করেছে এবং MakeSound() method override করেছে, কিন্তু Sleep() method override করতে হয়নি, কারণ সেটি concrete method।
 
 
-### ✅ C# Interface vs Abstract Class
+### ✅  Interface vs Abstract Class
 
-নিচে C#-এর **Interface** এবং **Abstract Class** এর মধ্যে পার্থক্য একটি টেবিল আকারে দেওয়া হলো:
+নিচে  **Interface** এবং **Abstract Class** এর মধ্যে পার্থক্য একটি টেবিল আকারে দেওয়া হলো:
 
 | বিষয়                | Abstract Class                                                                 | Interface                                                                 |
 |----------------------|--------------------------------------------------------------------------------|---------------------------------------------------------------------------|
@@ -481,8 +483,10 @@ class Dog : Animal {
     
 -   Abstract method এর override = বাধ্যতামূলক, কারণ base class method define ই করেনি।
 
+<br>
 
-### ✅ Step : 1
+### ✅ Example 1 : Notification system
+#### ✅ Step : 1
 ```c#
 using System;
 
@@ -1055,6 +1059,10 @@ public class PushNotify : INotify {
 ```
 এটা technically কাজ করবে, কিন্তু এটা **Clean Code না** — কারণ এমন method call করা হচ্ছে যার কোনো কাজই নাই।
 
+
+### 🔹 Option 2 : ✅ ( Recommended for Clean Code) 
+eikane **Interface Segregation** kora hoyece.
+
 ```c#
 using System;
 using System.Collections.Generic;
@@ -1175,7 +1183,7 @@ Push Sending to 123456789
 Push Log : 123456789
 ```
 
- ✅ It can be done in another way.
+### ✅ It can be done in another way.
 
 ```c#
 using System;
