@@ -6,7 +6,7 @@
 
 The **KISS principle** means that software design should be kept **as simple as possible**. Unnecessary complexity should be avoided, because simple code is easier to read, test, debug, maintain, and extend.
 
-KISS principle এর মূল কথা হলো — কোডকে যতটা সম্ভব সোজা-সাপ্টা রাখা। বাড়তি জটিলতা আনলে কোড maintain, debug আর extend করা কঠিন হয়ে যায়। সহজ কোড লেখা মানে future এ problem কম হবে।
+>KISS principle এর মূল কথা হলো — কোডকে যতটা সম্ভব সোজা-সাপ্টা রাখা। বাড়তি জটিলতা আনলে কোড maintain, debug আর extend করা কঠিন হয়ে যায়। সহজ কোড লেখা মানে future এ problem কম হবে।
 
 ### ✅ Why KISS is Important?
 
@@ -87,7 +87,7 @@ The **YAGNI principle** means: **“Don’t add functionality until it is actual
 Developers often over-engineer by adding extra features “just in case” — but most of those features never get used. This increases complexity, bugs, and maintenance cost.
 
 
-YAGNI principle এর মানে হলো:
+>YAGNI principle এর মানে হলো:
 “যতক্ষণ পর্যন্ত দরকার না হচ্ছে, ততক্ষণ পর্যন্ত অপ্রয়োজনীয় feature বা code লিখবে না।”
 কারণ অতিরিক্ত feature = অতিরিক্ত জটিলতা + bug + maintain করার ঝামেলা।
 
@@ -155,7 +155,7 @@ YAGNI principle এ বলে — “Don’t write extra features today for tomo
 
 👉 DRY = Don’t Repeat Yourself
 
-## 📝 Definition
+### 📝 Definition
 
 The **DRY principle** means: **“Every piece of knowledge should have a single, unambiguous representation in a system.”**
 In simple words: Avoid duplicating code. If the same logic is repeated in multiple places, put it in one place (like a function, method, or class) and reuse it.
