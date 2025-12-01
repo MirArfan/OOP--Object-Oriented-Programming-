@@ -52,7 +52,7 @@ Every concept / design principle / pattern must follow this professional note st
 - [✅ Constructor](./01_OOP/01_Class-and-Object.md)   
 - [✅ Encapsulation and Inheritance](./01_OOP/02_Encapsulation-and-Inheritance.md)
 - [✅ Polymorphism](./01_OOP/03_Polymorphism.md) 
-- [✅ Abstraction and Interface](./01_OOP/04_Abstraction-and-Interface.md)  
+- [✅ Abstraction](./01_OOP/04_Abstraction.md.md)  
 
 
 ## 🟩 Part-2: Design Principles
