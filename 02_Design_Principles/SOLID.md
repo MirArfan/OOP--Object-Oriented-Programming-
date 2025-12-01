@@ -111,14 +111,20 @@ class PaymentProcessor
 ### ✅ Correct Design (With OCP)
 #### 1. Define Interface
 ```c#
-interface IPaymentMethod
+using System;
+
+//
+// 1. Interface — open for extension
+//
+public interface IPaymentMethod
 {
     void Process();
 }
-```
-#### 2. Implement Different Payment Methods
-```c#
-class BkashPayment : IPaymentMethod
+
+//
+// 2. Implementations (Existing Payment Methods)
+//
+public class BkashPayment : IPaymentMethod
 {
     public void Process()
     {
@@ -126,33 +132,60 @@ class BkashPayment : IPaymentMethod
     }
 }
 
-class CardPayment : IPaymentMethod
+public class CardPayment : IPaymentMethod
 {
     public void Process()
     {
         Console.WriteLine("Card Payment Processed.");
     }
 }
-```
-#### 3. Payment Processor Class
-```c#
-class PaymentProcessor
+
+//
+// 3. Payment Processor — doesn't know who is coming
+//    Just calls `Process()`
+//
+public class PaymentProcessor
 {
     public void ProcessPayment(IPaymentMethod paymentMethod)
     {
         paymentMethod.Process();
     }
 }
-```
-#### 4. Add New Method (Extension Without Modification)
-```c#
-class NagadPayment : IPaymentMethod
+
+//
+// 4. New Feature Added — without modifying old code! (OCP ✓)
+//
+public class NagadPayment : IPaymentMethod
 {
     public void Process()
     {
         Console.WriteLine("Nagad Payment Processed.");
     }
 }
+
+//
+// -------- MAIN PROGRAM ----------
+//
+public class Program
+{
+    public static void Main()
+    {
+        PaymentProcessor processor = new PaymentProcessor();
+
+        processor.ProcessPayment(new BkashPayment());
+        processor.ProcessPayment(new CardPayment());
+        processor.ProcessPayment(new NagadPayment());  // Added later — old code untouched 🔥
+
+        Console.ReadLine();
+    }
+}
+```
+
+Output : 
+```yaml
+bKash Payment Processed.
+Card Payment Processed.
+Nagad Payment Processed.
 ```
 ➡️ পুরানো ক্লাস একটুও পরিবর্তন করার দরকার নেই! শুধু নতুন ক্লাস Add করলেই চলে — এটি হলো OCP এর বাস্তব প্রয়োগ।
 
@@ -211,34 +244,39 @@ public interface INotify {
     void Log();
     void Save();
 }
-```
 
-#### 2. Different Notification Implementations
-```c#
+////
+//// 2. Different Notification Implementations
+////
+
 public class EmailNotify : INotify {
     public string Email { get; set; }
-    public void Send() => Console.WriteLine("Email Send to " + Email);
+
+    public void Send() => Console.WriteLine("Email Send to : " + Email);
     public void Log() => Console.WriteLine("Email Log : " + Email);
     public void Save() => Console.WriteLine("Email Save to DB");
 }
 
 public class SMSNotify : INotify {
     public string Phone { get; set; }
-    public void Send() => Console.WriteLine("SMS Sending to " + Phone);
+
+    public void Send() => Console.WriteLine("SMS Sending to : " + Phone);
     public void Log() => Console.WriteLine("SMS Log : " + Phone);
     public void Save() => Console.WriteLine("SMS Save to DB");
 }
 
 public class PushNotify : INotify {
     public string Token { get; set; }
-    public void Send() => Console.WriteLine("Push Sending to " + Token);
+    public void Send() => Console.WriteLine("Push Sending to : " + Token);
     public void Log() => Console.WriteLine("Push Log : " + Token);
     public void Save() => Console.WriteLine("Push Save to DB");
 }
-```
 
-#### 3. Context Class (Processor)
-```c#
+
+////
+//// 3. Context Class (Processor)
+////
+
 public class NotifyContext {
     private readonly INotify _notify;
 
@@ -252,10 +290,12 @@ public class NotifyContext {
         _notify.Save();
     }
 }
-```
 
-#### 4. Client Code (Main Program)
-```c#
+
+////
+//// 4. Client Code (Main Program)
+////
+
 class Program {
     public static void Main() {
         INotify emailNotify = new EmailNotify { Email = "test@test.com" };
@@ -275,16 +315,16 @@ class Program {
 }
 ```
 #### Output
-```
-Email Send to test@test.com
+```yaml
+Email Send to : test@test.com
 Email Log : test@test.com
 Email Save to DB
 
-SMS Sending to 09123456789
+SMS Sending to : 09123456789
 SMS Log : 09123456789
 SMS Save to DB
 
-Push Sending to afoijfo56789gsgg493498bbvrvv
+Push Sending to : afoijfo56789gsgg493498bbvrvv
 Push Log : afoijfo56789gsgg493498bbvrvv
 Push Save to DB
 ```
@@ -343,20 +383,20 @@ class Program
 }
 ```
 #### 🌟 Output:
-```
-Email Send to test@test.com
+```yaml
+Email Send to : test@test.com
 Email Log : test@test.com
 Email Save to DB
 
-SMS Sending to 09123456789
+SMS Sending to : 09123456789
 SMS Log : 09123456789
 SMS Save to DB
 
-Push Sending to afoijfo56789gsgg493498bbvrvv
+Push Sending to : afoijfo56789gsgg493498bbvrvv
 Push Log : afoijfo56789gsgg493498bbvrvv
 Push Save to DB
 
-WhatsApp Sending to +8801712345678
+WhatsApp Sending to : +8801712345678
 WhatsApp Log : +8801712345678
 WhatsApp Save to DB
 ```
@@ -441,19 +481,27 @@ IPaymentProcess → শুধু Process এর জন্য।
 
 IRefundable → Refund এর জন্য (যারা refund support করে)।
 ```c#
-interface IPaymentProcess
+using System;
+
+//
+// ================= INTERFACES =================
+//
+
+public interface IPaymentProcess
 {
     void Process();
 }
 
-interface IRefundable
+public interface IRefundable
 {
     void Refund();
 }
-```
-Correct Implementations
-```c#
-class BkashPayment : IPaymentProcess
+
+//
+// ============== IMPLEMENTATIONS ==============
+//
+
+public class BkashPayment : IPaymentProcess
 {
     public void Process()
     {
@@ -461,7 +509,7 @@ class BkashPayment : IPaymentProcess
     }
 }
 
-class CardPayment : IPaymentProcess, IRefundable
+public class CardPayment : IPaymentProcess, IRefundable
 {
     public void Process()
     {
@@ -474,7 +522,7 @@ class CardPayment : IPaymentProcess, IRefundable
     }
 }
 
-class NagadPayment : IPaymentProcess
+public class NagadPayment : IPaymentProcess
 {
     public void Process()
     {
@@ -482,8 +530,11 @@ class NagadPayment : IPaymentProcess
     }
 }
 
-Payment Processor
-class PaymentProcessor
+//
+// ============== PAYMENT PROCESSOR ==============
+//
+
+public class PaymentProcessor
 {
     public void ProcessPayment(IPaymentProcess paymentMethod)
     {
@@ -495,6 +546,40 @@ class PaymentProcessor
         refundableMethod.Refund();
     }
 }
+
+//
+// ====================== MAIN ======================
+// RUN & SEE OUTPUT
+//
+
+public class Program
+{
+    public static void Main()
+    {
+        var processor = new PaymentProcessor();
+
+        // Processing Payments
+        processor.ProcessPayment(new BkashPayment());
+        processor.ProcessPayment(new CardPayment());
+        processor.ProcessPayment(new NagadPayment());
+
+        Console.WriteLine("-------------------------");
+
+        // Refund only possible for CardPayment
+        processor.ProcessRefund(new CardPayment());
+
+        Console.ReadLine();
+    }
+}
+```
+
+Output : 
+```yaml
+bKash Payment Processed.
+Card Payment Processed.
+Nagad Payment Processed.
+-------------------------
+Card Refund Processed.
 ```
 ### 🌟 Why This Fixes ISP?
 
@@ -692,7 +777,7 @@ class Program
 }
 ```
 #### ✅ Output
-```
+```yaml
 Email Send to test@test.com
 Email Log : test@test.com
 Email Save to DB
@@ -713,7 +798,7 @@ Push Log : 123456789
 
 - Clean Code → Empty method avoid করা হয়েছে
 
- ✅ It can be done in another way.
+### ✅ It can be done in another way.
 
 ```c#
 using System;
@@ -821,7 +906,7 @@ class Program
 ```
 ### ✅ Output
 
-```
+```yaml
 Email Send to test@test.com
 Email Log : test@test.com
 Email Save to DB
@@ -885,6 +970,8 @@ class UserService
 
 #### ✅ Correct Example (With DIP)
 ```c#
+using System;
+
 // 1. High-level module depends on abstraction
 public interface IDatabase
 {
@@ -941,6 +1028,14 @@ class Program
     }
 }
 ```
+
+Output : 
+```yaml
+Saved to MySQL DB: Alice
+User added: Alice
+Saved to MongoDB: Bob
+User added: Bob
+```
 ### ✅ Benefits
 
 - High-level module (UserService) directly database এ depend করে না।
@@ -991,6 +1086,8 @@ class Program
 
 #### ✅ DIP অনুযায়ী ভালো ডিজাইন
 ```c#
+using System;
+
 // Step 1: Interface তৈরি করি
 public interface IMessageSender
 {
@@ -1002,7 +1099,7 @@ public class EmailSender : IMessageSender
 {
     public void Send(string to)
     {
-        Console.WriteLine("Email sent to " + to);
+        Console.WriteLine("Email sent to : " + to);
     }
 }
 
@@ -1010,7 +1107,7 @@ public class SMSSender : IMessageSender
 {
     public void Send(string to)
     {
-        Console.WriteLine("SMS sent to " + to);
+        Console.WriteLine("SMS sent to : " + to);
     }
 }
 
@@ -1019,7 +1116,7 @@ public class PushSender : IMessageSender
 {
     public void Send(string to)
     {
-        Console.WriteLine("Push Notification sent to " + to);
+        Console.WriteLine("Push Notification sent to : " + to);
     }
 }
 
@@ -1058,6 +1155,14 @@ class Program
         notification3.Notify("device_token_123");
     }
 }
+```
+
+
+Output : 
+```yaml
+Email sent to : test@test.com
+SMS sent to : 01712345678
+Push Notification sent to : device_token_123
 ```
 #### 🔹 Benefits
 
@@ -1157,6 +1262,8 @@ class Program
 - High-level code (Payroll) directly low-level class Employee এ depend করছে → DIP ভঙ্গ।
 ###  ✅ Solution (With Interface – DIP + LSP)
 ```c#
+using System;
+
 //Step 1: Interface তৈরি করি
 public interface IEmployee
 {
@@ -1222,6 +1329,13 @@ class Program
         // payroll.ProcessBonus(contract);  // ❌ Call not allowed → safe
     }
 }
+```
+
+Output : 
+```yaml
+Salary: 1000000
+Salary: 2000000
+Bonus: 200000
 ```
 #### 🟢 Benefits
 
@@ -1291,49 +1405,53 @@ namespace LSPExample
 ```c#
 using System;
 
-namespace LSPExample
+// Base (Parent) Class
+public abstract class Drink
 {
-    // Parent class (abstract)
-    public abstract class Drink
+    public abstract string Serve();
+}
+
+// Child 1
+public class Coffee : Drink
+{
+    public override string Serve()
     {
-        public abstract string Serve();
-    }
-
-    // Subclass 1: Coffee
-    public class Coffee : Drink
-    {
-        public override string Serve()
-        {
-            return "Serving Coffee ☕";
-        }
-    }
-
-    // Subclass 2: Tea
-    public class Tea : Drink
-    {
-        public override string Serve()
-        {
-            return "Serving Tea 🍵";
-        }
-    }
-
-    class Program
-    {
-        public static void ServeDrink(Drink drink)
-        {
-            Console.WriteLine(drink.Serve());
-        }
-
-        static void Main(string[] args)
-        {
-            Coffee coffee = new Coffee();
-            Tea tea = new Tea();
-
-            ServeDrink(coffee); // Output: Serving Coffee ☕ ✅
-            ServeDrink(tea);    // Output: Serving Tea 🍵 ✅
-        }
+        return "Serving Coffee ☕";
     }
 }
+
+// Child 2
+public class Tea : Drink
+{
+    public override string Serve()
+    {
+        return "Serving Tea 🍵";
+    }
+}
+
+class Program
+{
+    public static void ServeDrink(Drink drink)
+    {
+        Console.WriteLine(drink.Serve());
+    }
+
+    static void Main()
+    {
+        Drink coffee = new Coffee();
+        Drink tea = new Tea();
+
+        ServeDrink(coffee);  // Output: Serving Coffee ☕
+        ServeDrink(tea);     // Output: Serving Tea 🍵
+
+        Console.ReadLine(); // Console hold (optional but helpful)
+    }
+}
+```
+Output :
+```yaml
+Serving Coffee ☕
+Serving Tea 🍵
 ```
 
 #### Solution Note :
