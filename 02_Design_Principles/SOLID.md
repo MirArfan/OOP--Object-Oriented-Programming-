@@ -1192,17 +1192,15 @@ Push Notification sent to : device_token_123
 
 - Subtypes must be substitutable for their base types without breaking the program.
 
-- অর্থাৎ child class যেখানে parent class use হয়, সেখানেই একইভাবে কাজ করবে।
-
-- Parent কে replace করে Child বসালে behavior পরিবর্তন হওয়া যাবে না।
-
+- Subclass must be completely substitutable for its superclass
 
 #### 🎯 সহজ বাংলায়:
+>👉 Parent (base) class-এর জায়গায় তার child (derived) class-কে বসালেও প্রোগ্রাম যেন ঠিকমতো কাজ করে।
 - Subclass যদি Parent class-এর behavior পরিবর্তন করে দেয়, তাহলে সেটা LSP ভাঙছে।
 
 - Subclass যতই extend করুক না কেন, তা যেন parent class-এর contract ভাঙে না।
 
-####  ❌ খারাপ ডিজাইন : Example 1 
+####  ❌ Wrong Design : Example 1 
 
 
 ```c#
@@ -1409,7 +1407,7 @@ namespace LSPExample
 ```c#
 using System;
 
-// Base (Parent) Class
+// Base (Parent) Class (Abstraction)
 public abstract class Drink
 {
     public abstract string Serve();
@@ -1433,22 +1431,33 @@ public class Tea : Drink
     }
 }
 
-class Program
+
+
+public class DrinkService
 {
-    public static void ServeDrink(Drink drink)
+  
+    public void ServeDrink(Drink drink)
     {
         Console.WriteLine(drink.Serve());
     }
+}
 
+
+
+class Program
+{
     static void Main()
     {
+       
         Drink coffee = new Coffee();
         Drink tea = new Tea();
 
-        ServeDrink(coffee);  // Output: Serving Coffee ☕
-        ServeDrink(tea);     // Output: Serving Tea 🍵
+        DrinkService drinkService = new DrinkService();
 
-        Console.ReadLine(); // Console hold (optional but helpful)
+        drinkService.ServeDrink(coffee); // Output: Serving Coffee ☕
+        drinkService.ServeDrink(tea);    // Output: Serving Tea 🍵
+
+        Console.ReadLine();
     }
 }
 ```
@@ -1463,6 +1472,166 @@ Serving Tea 🍵
 >এখন parent class হলো Drink। Coffee এবং Tea দুটোই Drink এর subclass।
 Function ServeDrink যে কোনো Drink safely handle করতে পারে।
 ✅ Liskov Substitution Principle মানা হচ্ছে।
+
+<br>
+
+### ❌ Example 3 : CashOnDelivery (COD)
+ অনলাইন পেমেন্ট করতে পারে না। কিন্তু IPayment চায় অনলাইন payment করতে।
+ফলে COD–কে IPayment এর জায়গায় বসালে সিস্টেম crash হয়।
+
+#### ❌ WRONG DESIGN (LSP Violation)
+```c#
+using System;
+
+public interface IPayment
+{
+    void Pay(decimal amount);
+}
+
+public class CreditCardPayment : IPayment
+{
+    public void Pay(decimal amount)
+    {
+        Console.WriteLine($"Paid {amount} using Credit Card.");
+    }
+}
+
+public class PaypalPayment : IPayment
+{
+    public void Pay(decimal amount)
+    {
+        Console.WriteLine($"Paid {amount} using PayPal.");
+    }
+}
+
+// ❌ COD cannot process online payment but still forced to implement Pay()
+public class CashOnDelivery : IPayment
+{
+    public void Pay(decimal amount)
+    {
+        // LSP violation → unexpected behavior
+        throw new NotSupportedException("COD cannot process online payment!");
+    }
+}
+
+public class PaymentProcessor
+{
+    public void ProcessPayment(IPayment paymentMethod, decimal amount)
+    {
+        paymentMethod.Pay(amount); // ❌ COD will break here
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        PaymentProcessor processor = new PaymentProcessor();
+
+        IPayment p1 = new CreditCardPayment();
+        IPayment p2 = new PaypalPayment();
+        IPayment p3 = new CashOnDelivery(); // ❌ will crash
+
+        processor.ProcessPayment(p1, 500);
+        processor.ProcessPayment(p2, 800);
+
+        // ❌ This will throw exception (LSP broken)
+        processor.ProcessPayment(p3, 1000);
+    }
+}
+```
+
+### ✅ CORRECT DESIGN (LSP Compliant Full Code)
+
+Solution:
+
+ - 👉 COD আলাদা type এর payment
+ - 👉 Online payments আলাদা interface
+ - 👉 কোনো class অন্য class এর constraint ভঙ্গ করছে না
+ - 👉 সিস্টেমে কোথাও crash নেই
+
+### ✅ CORRECT DESIGN (LSP Compliant)
+```c#
+using System;
+
+// Base payment (common behavior)
+public interface IPayment
+{
+    void Pay(decimal amount);
+}
+
+// Online payments
+public interface IOnlinePayment : IPayment
+{
+    void PayOnline(decimal amount);
+}
+
+public class CreditCardPayment : IOnlinePayment
+{
+    public void Pay(decimal amount)
+    {
+        PayOnline(amount);
+    }
+
+    public void PayOnline(decimal amount)
+    {
+        Console.WriteLine($"Paid {amount} using Credit Card.");
+    }
+}
+
+public class PaypalPayment : IOnlinePayment
+{
+    public void Pay(decimal amount)
+    {
+        PayOnline(amount);
+    }
+
+    public void PayOnline(decimal amount)
+    {
+        Console.WriteLine($"Paid {amount} using PayPal.");
+    }
+}
+
+// COD works perfectly without violating rules
+public class CashOnDelivery : IPayment
+{
+    public void Pay(decimal amount)
+    {
+        Console.WriteLine($"COD: Please pay {amount} during delivery.");
+    }
+}
+
+public class PaymentProcessor
+{
+    public void ProcessPayment(IPayment paymentMethod, decimal amount)
+    {
+        paymentMethod.Pay(amount);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        PaymentProcessor processor = new PaymentProcessor();
+
+        IPayment pay1 = new CreditCardPayment();
+        IPayment pay2 = new PaypalPayment();
+        IPayment pay3 = new CashOnDelivery();  // ✔ Works fine
+
+        processor.ProcessPayment(pay1, 500);
+        processor.ProcessPayment(pay2, 1000);
+        processor.ProcessPayment(pay3, 800);  // ✔ No crash, LSP maintained
+    }
+}
+```
+
+Output : 
+```yaml
+Paid 500 using Credit Card.
+Paid 1000 using PayPal.
+COD: Please pay 800 during delivery.
+```
 
 #### 💡 Takeaway (Note):
 
