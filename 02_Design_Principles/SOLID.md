@@ -1036,6 +1036,10 @@ User added: Alice
 Saved to MongoDB: Bob
 User added: Bob
 ```
+
+>In C#, the `readonly` keyword is commonly used when applying **Dependency Injection**.
+It ensures that the dependency is assigned only once — inside the constructor — and cannot be changed later during runtime.
+
 ### ✅ Benefits
 
 - High-level module (UserService) directly database এ depend করে না।
