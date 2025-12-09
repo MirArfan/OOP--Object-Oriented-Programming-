@@ -348,38 +348,32 @@ Multiple child classes inherit from the same parent class.
 
 ### Example :
 ```c#
-🧩 C# Example
 using System;
 
-class Shape     // Parent Class
+// Base class
+class Animal
 {
-    public string Color;
-
-    public void ShowColor()
+    public void Eat()
     {
-        Console.WriteLine("Color: " + Color);
+        Console.WriteLine("Eating...");
     }
 }
 
-class Circle : Shape     // Child 1
+// Derived class 1
+class Dog : Animal
 {
-    public double Radius;
-
-    public void ShowRadius()
+    public void Bark()
     {
-        Console.WriteLine("Radius: " + Radius);
+        Console.WriteLine("Dog is barking.");
     }
 }
 
-class Rectangle : Shape  // Child 2
+// Derived class 2
+class Cat : Animal
 {
-    public double Width;
-    public double Height;
-
-    public void ShowDimensions()
+    public void Meow()
     {
-        Console.WriteLine("Width: " + Width);
-        Console.WriteLine("Height: " + Height);
+        Console.WriteLine("Cat is meowing.");
     }
 }
 
@@ -387,29 +381,23 @@ class Program
 {
     static void Main()
     {
-        Circle c1 = new Circle();
-        c1.Color = "Red";  // Inherited from Shape
-        c1.Radius = 10;
-        c1.ShowColor();
-        c1.ShowRadius();
+        Dog dog = new Dog();
+        dog.Eat();   // from Animal
+        dog.Bark();  // Dog-specific
 
-        Rectangle r1 = new Rectangle();
-        r1.Color = "Blue"; // Inherited from Shape
-        r1.Width = 5;
-        r1.Height = 8;
-        r1.ShowColor();
-        r1.ShowDimensions();
+        Cat cat = new Cat();
+        cat.Eat();   // from Animal
+        cat.Meow();  // Cat-specific
     }
 }
 ```
 
 Output :
-```
-Color: Red
-Radius: 10
-Color: Blue
-Width: 5
-Height: 8
+```yaml
+Eating...
+Dog is barking.
+Eating...
+Cat is meowing.
 ```
 
 <br>
