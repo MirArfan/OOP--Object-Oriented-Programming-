@@ -408,8 +408,7 @@ A class inherits from multiple parents.
  
 ⚠️  C# does not support multiple class inheritance, but it supports multiple interface inheritance.
 
-🧩 
-Example
+### 🧩 Example 1
 ```c#
 using System;
 
@@ -451,6 +450,53 @@ Output :
 ```
 Taking photo...
 Playing music...
+```
+
+### 🧩 Example 2 :
+```c#
+using System;
+
+// Interface 1
+interface IStudent
+{
+    void Study();
+}
+
+// Interface 2
+interface IWorker
+{
+    void Work();
+}
+
+// Class implementing multiple interfaces
+class Person : IStudent, IWorker
+{
+    public void Study()
+    {
+        Console.WriteLine("Person is studying.");
+    }
+
+    public void Work()
+    {
+        Console.WriteLine("Person is working.");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Person p = new Person();
+
+        p.Study();  // from IStudent
+        p.Work();   // from IWorker
+    }
+}
+```
+Output :
+```yaml
+Person is studying.
+Person is working.
 ```
 
 <br>
