@@ -102,9 +102,9 @@ We have a **Music Player** with 3 states: **Stopped**, **Playing**, **Paused**.
 - Button presses change behavior according to the current state  
 - In the previous approach, all logic is handled using **if-else statements**  
 
----
 
-## ❌ Wrong Approach (Without State Pattern)
+
+### ❌ Wrong Approach (Without State Pattern)
 
 ```csharp
 using System;
@@ -296,4 +296,106 @@ Music Paused
 Music Resumed
 Music Stopped
 Cannot pause. Music is stopped
+```
+
+
+
+### 🚦 Example 2 : Traffic Light System (State Design Pattern)
+
+A **Traffic Light System** has three states:
+
+- 🔴 Red  
+- 🟡 Yellow  
+- 🟢 Green  
+
+Calling `Next()` will change the behavior based on the **current state**.
+
+
+
+### ✅ Solution: Using State Design Pattern
+
+
+
+```csharp
+using System;
+
+// 🧱 Step 1: State Interface
+interface ITrafficLightState
+{
+    void Next(TrafficLight light);
+}
+
+
+// 🧱 Step 2: Concrete States
+
+// Red State
+class RedState : ITrafficLightState
+{
+    public void Next(TrafficLight light)
+    {
+        Console.WriteLine("Red → Green");
+        light.SetState(new GreenState());
+    }
+}
+
+// Green State
+class GreenState : ITrafficLightState
+{
+    public void Next(TrafficLight light)
+    {
+        Console.WriteLine("Green → Yellow");
+        light.SetState(new YellowState());
+    }
+}
+
+// Yellow State
+class YellowState : ITrafficLightState
+{
+    public void Next(TrafficLight light)
+    {
+        Console.WriteLine("Yellow → Red");
+        light.SetState(new RedState());
+    }
+}
+
+// 🧱 Step 3: Context Class
+class TrafficLight
+{
+    private ITrafficLightState _state;
+
+    public TrafficLight()
+    {
+        _state = new RedState(); // Initial state
+    }
+
+    public void SetState(ITrafficLightState state)
+    {
+        _state = state;
+    }
+
+    public void Next()
+    {
+        _state.Next(this);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        TrafficLight light = new TrafficLight();
+
+        light.Next();
+        light.Next();
+        light.Next();
+        light.Next();
+    }
+}
+```
+### 🖥 Sample Output
+```yaml
+Red → Green
+Green → Yellow
+Yellow → Red
+Red → Green
 ```
