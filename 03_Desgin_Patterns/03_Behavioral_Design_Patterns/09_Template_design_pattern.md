@@ -296,57 +296,56 @@ Exporting Excel report
 using System;
 
 // 🧱 Step 1: Abstract Class (Template)
-abstract class Beverage
+abstract class OrderTemplate
 {
-    // Template Method (Fixed Algorithm Structure)
-    public void PrepareRecipe()
+    // Template Method
+    public void ProcessOrder()
     {
-        BoilWater();
-        Brew();
-        PourInCup();
-        AddCondiments();
+        ValidateOrder();
+        CalculatePrice();
+        ProcessPayment();
+        SendConfirmation();
     }
 
-    protected void BoilWater()
+    protected void ValidateOrder()
     {
-        Console.WriteLine("Boiling water");
+        Console.WriteLine("Order validated");
     }
 
-    protected void PourInCup()
-    {
-        Console.WriteLine("Pouring into cup");
-    }
+    protected abstract void CalculatePrice();
+    protected abstract void ProcessPayment();
 
-    // Variable steps
-    protected abstract void Brew();
-    protected abstract void AddCondiments();
+    protected void SendConfirmation()
+    {
+        Console.WriteLine("Confirmation sent");
+    }
 }
 
 
 // 🧱 Step 2: Concrete Classes
-class Tea : Beverage
+class RegularOrder : OrderTemplate
 {
-    protected override void Brew()
+    protected override void CalculatePrice()
     {
-        Console.WriteLine("Steeping tea leaves");
+        Console.WriteLine("Calculating regular price");
     }
 
-    protected override void AddCondiments()
+    protected override void ProcessPayment()
     {
-        Console.WriteLine("Adding lemon");
+        Console.WriteLine("Processing regular payment");
     }
 }
 
-class Coffee : Beverage
+class PremiumOrder : OrderTemplate
 {
-    protected override void Brew()
+    protected override void CalculatePrice()
     {
-        Console.WriteLine("Brewing coffee grounds");
+        Console.WriteLine("Calculating discounted price");
     }
 
-    protected override void AddCondiments()
+    protected override void ProcessPayment()
     {
-        Console.WriteLine("Adding sugar and milk");
+        Console.WriteLine("Processing premium payment");
     }
 }
 
@@ -355,27 +354,31 @@ class Program
 {
     static void Main()
     {
-        Beverage tea = new Tea();
-        tea.PrepareRecipe();
+        OrderTemplate regularOrder = new RegularOrder();
+        Console.WriteLine("---- Regular Order ----");
+        regularOrder.ProcessOrder();
 
         Console.WriteLine();
 
-        Beverage coffee = new Coffee();
-        coffee.PrepareRecipe();
+        OrderTemplate premiumOrder = new PremiumOrder();
+        Console.WriteLine("---- Premium Order ----");
+        premiumOrder.ProcessOrder();
     }
 }
 ```
 🖥 Sample Output
 ```yaml
-Boiling water
-Steeping tea leaves
-Pouring into cup
-Adding lemon
+---- Regular Order ----
+Order validated
+Calculating regular price
+Processing regular payment
+Confirmation sent
 
-Boiling water
-Brewing coffee grounds
-Pouring into cup
-Adding sugar and milk
+---- Premium Order ----
+Order validated
+Calculating discounted price
+Processing premium payment
+Confirmation sent
 ```
 
 
