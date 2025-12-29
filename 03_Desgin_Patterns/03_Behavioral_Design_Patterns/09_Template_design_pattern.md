@@ -270,22 +270,19 @@ Exporting Excel report
 
 <br>
 
-### 🍽 Example 2 : Cooking Recipe System
+### 🍽 Example 2 : Online Order Processing
 
-আমাদের দুইটা recipe আছে:
+সব order এর flow একই:
 
-- ☕ Tea  
-- ☕ Coffee  
+- Validate Order
 
-👉 Cooking process এর **flow একই**, কিন্তু কিছু step আলাদা।
+- Calculate Price
 
-### Common Flow
-1. Boil Water  
-2. Brew  
-3. Pour in Cup  
-4. Add Condiments  
+- Process Payment
 
-👉 **Brew** এবং **Add Condiments** step আলাদা হবে।
+- Send Confirmation
+
+কিন্তু order type অনুযায়ী কিছু step আলাদা।
 
 
 
