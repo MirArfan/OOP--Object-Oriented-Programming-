@@ -1,75 +1,289 @@
 # 🏭 Factory Method Pattern – Introduction
 
-## 📘 English Definition
-The **Factory Method Pattern** is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to decide which class to instantiate.
+### 📘  Definition
+The **Factory Method Pattern** is a creational design pattern that **provides an interface for creating objects in a superclass**, but allows subclasses to decide which class to instantiate.
 
-## 📗 Bangla Definition
-**Factory Method Pattern** হলো একটি creational design pattern, যা object তৈরি করার জন্য একটি interface দেয়,  
+
+>**Factory Method Pattern** হলো একটি creational design pattern, যা object তৈরি করার জন্য একটি interface দেয়,  
 কিন্তু কোন class এর object তৈরি হবে সেটা নির্ধারণ করে **subclass**।
 
----
+<br>
 
-## 🎯 Goal / Purpose
+### 2️⃣ Why Factory Pattern is Needed?
+
+❌ Problem (Without Factory):
+```c#
+if(type == "Circle")
+    shape = new Circle();
+else if(type == "Rectangle")
+    shape = new Rectangle();
+```
+
+#### 🔻 Problems:
+
+- Too many if-else
+- Client code tightly coupled
+- New type add করলে client modify করতে হয়
+
+<br>
+
+### 🎯 Goal / Purpose
 - Object creation handle করা, কিন্তু creation logic বাইরে exposed না করা।  
 - Subclasses কে সিদ্ধান্ত নেওয়ার সুযোগ দেওয়া—কোন object তৈরি হবে।  
 - Code কে flexible, maintainable, এবং loosely-coupled করা।
+- Centralized object creation logic
 
----
+<br>
 
-## 🧩 Where It’s Used
+### 🧩 Where It’s Used
 - **GUI frameworks** (Button, Dialog)
 - **Game development** (Enemy, Weapon Factory)
 - **Notification system** (Email / SMS / Push)
 - **Payment processing** (Bkash, Stripe, PayPal)
 
-# 🏭 Factory Method Pattern
+<br>
 
-## 🔧 How Factory Method Works (Steps)
+
+### 🔧 How Factory Method Works (Steps)
 
 1. Parent class declares a **factory method**.  
 2. Subclasses override that method.  
 3. Client requests an object from the parent → parent calls the overridden factory.  
 4. Subclass decides **which object to return**.  
 
----
+```arduino
+Client → Factory → Object
+(Client never uses new directly)
+```
 
-## ✔️ Advantages
+<br>
+
+### ✔️ Advantages
 
 - Removes `new` keyword from client code  
 - Easy to add new product classes  
 - Follows **Open/Closed Principle**  
-- Cleaner, modular design  
+- Cleaner, modular design 
+- Centralized object creation 
 
----
 
-## ❌ Disadvantages
+
+### ❌ Disadvantages
 
 - More classes needed → slightly complex  
-- Requires inheritance  
+- Requires inheritance 
+- If-else still exists (Simple Factory) 
+
+<br>
+<br>
+
+
+
+### 🎮 Example 1 : Notification System (Factory Pattern)
+
+#### 🔔 Problem Description
+System থেকে বিভিন্ন ধরনের notification পাঠাতে হবে:
+
+- Email
+- SMS  
+- (Future) Push Notification
+
+👉 Requirement:
+- Notification type runtime এ decide হবে
+- Future এ নতুন notification add করা সহজ হতে হবে
+
+
+
+### ❌ Wrong Approach (Without Factory)
+
+```csharp
+class Program
+{
+    static void Main()
+    {
+        string type = "email";
+
+        if (type == "email")
+        {
+            Console.WriteLine("Sending Email Notification");
+        }
+        else if (type == "sms")
+        {
+            Console.WriteLine("Sending SMS Notification");
+        }
+    }
+}
+```
+### ❌ Problems (Without Factory)
+
+- `if-else` keeps growing as new notification types are added  
+- Tight coupling between client code and concrete classes  
+- Adding a new notification requires modifying client code  
+- Violates **Open/Closed Principle (OCP)**  
+
+
+### ✅ Solution: Factory Design Pattern
+
+- Object creation logic is moved to a **Factory**
+- Client code depends only on the **interface**
+- New notification types can be added with minimal changes
+
+
+
+### ✅ Factory Pattern – Full Runnable C# Code
+
+
+
+```csharp
+// 1️⃣ Product Interface
+interface INotification
+{
+    void Send();
+}
+
+// 2️⃣ Concrete Products
+class EmailNotification : INotification
+{
+    public void Send()
+    {
+        Console.WriteLine("Sending Email Notification");
+    }
+}
+
+class SmsNotification : INotification
+{
+    public void Send()
+    {
+        Console.WriteLine("Sending SMS Notification");
+    }
+}
+
+// 3️⃣ Factory Class
+class NotificationFactory
+{
+    public static INotification CreateNotification(string type)
+    {
+        if (type == "email")
+            return new EmailNotification();
+        else if (type == "sms")
+            return new SmsNotification();
+        else
+            throw new ArgumentException("Invalid notification type");
+    }
+}
+
+// 4️⃣ Client Code
+class Program
+{
+    static void Main()
+    {
+        INotification notification1 =
+            NotificationFactory.CreateNotification("email");
+        notification1.Send();
+
+        INotification notification2 =
+            NotificationFactory.CreateNotification("sms");
+        notification2.Send();
+    }
+}
+```
+🖥 Output
+```yaml
+Sending Email Notification
+Sending SMS Notification
+```
+
+<br>
+<br>
+
+### 🔺 Example 2 : Drawing Application
+
+Drawing app এ user shape select করবে:
+
+- Circle
+- Rectangle
+- Triangle
+
+👉 App জানবে না কোন class তৈরি হচ্ছে, শুধু draw করবে।
+
+✅ Factory Pattern 
+```C#
+// 1️⃣ Product Interface
+interface IShape
+{
+    void Draw();
+}
+
+// 2️⃣ Concrete Products
+class Circle : IShape
+{
+    public void Draw()
+    {
+        Console.WriteLine("Drawing Circle");
+    }
+}
+
+class Rectangle : IShape
+{
+    public void Draw()
+    {
+        Console.WriteLine("Drawing Rectangle");
+    }
+}
+
+class Triangle : IShape
+{
+    public void Draw()
+    {
+        Console.WriteLine("Drawing Triangle");
+    }
+}
+
+// 3️⃣ Factory Class
+class ShapeFactory
+{
+    public static IShape CreateShape(string type)
+    {
+        if (type == "circle")
+            return new Circle();
+        else if (type == "rectangle")
+            return new Rectangle();
+        else if (type == "triangle")
+            return new Triangle();
+        else
+            throw new ArgumentException("Invalid shape type");
+    }
+}
+
+// 4️⃣ Client Code
+class Program
+{
+    static void Main()
+    {
+        IShape shape1 = ShapeFactory.CreateShape("circle");
+        shape1.Draw();
+
+        IShape shape2 = ShapeFactory.CreateShape("rectangle");
+        shape2.Draw();
+
+        IShape shape3 = ShapeFactory.CreateShape("triangle");
+        shape3.Draw();
+    }
+}
+```
+🖥 Output
+```yaml
+Drawing Circle
+Drawing Rectangle
+Drawing Triangle
+```
+
 
 ---
 
-## 🌍 Real-Life Example
+<br>
 
-### Bangla Example
-ধরো একটি Delivery App:  
-
-- ঢাকায় হলে → Pathao Rider পাঠাবে  
-- চট্টগ্রামে হলে → Foodpanda Rider পাঠাবে  
-
-User app শুধু **ডেলিভারি চায়** (client),  
-কিন্তু কোন rider পাঠানো হবে → সেটা **backend (factory)** সিদ্ধান্ত নেবে।  
-
-### English Example
-A document editor:  
-
-- `createDocument()` method  
-- Subclasses: `WordDocument`, `PDFDocument`  
-- Each subclass decides **which document object to create**.
-
-----
-
-# ❗ Problem Scenario
+### ❗ Example 2 v1 :
 
 ধরো তুমি একটি **drawing application** বানাচ্ছো।  
 Application-এ বিভিন্ন ধরনের **shapes** (Circle, Square, Triangle) draw করতে হবে।  
@@ -85,7 +299,6 @@ Application-এ বিভিন্ন ধরনের **shapes** (Circle, Square
 Client শুধু "**shape তৈরি করো**" বলবে,  
 কোন shape তৈরি হবে সেটা **factory ঠিক করবে**  
 
----
 
 ### ✅ Solution
 
@@ -150,9 +363,9 @@ class Program {
 ```
 
 ✅ Output
-```
-using System;
-using System.IO;
+```yaml
+Drawing Circle
+Drawing Square
 ```
 
 # 📊 When to Use Factory Method?
@@ -161,9 +374,9 @@ using System.IO;
 - যখন **client code কে নির্দিষ্ট class এর উপর নির্ভরশীল না করতে চাই**  
 - যখন **system কে extensible করতে চাই** (new product যোগ করলে client code পরিবর্তন হবে না)  
 
----
 
-## ❌ Bad Example
+
+### ❌ Bad Example
 
 যে জায়গাগুলোতে **object creation logic বারবার repeat** হচ্ছে (Problematic code):  
 
@@ -250,15 +463,15 @@ Preparing Veg Pizza
 ```
 
 
-# 🛠️ Problem Summary (সমস্যাগুলো সহজভাবে)
+### 🛠️ Problem Summary (সমস্যাগুলো সহজভাবে)
 
 - **Object creation logic repeated** — ভালো নয়  
 - **Client/Service গুলো concrete classes-এ tightly coupled**  
 - **Extensibility খারাপ** — নতুন ধরনের pizza যোগ করতে হলে অনেক জায়গায় পরিবর্তন করতে হবে  
 
----
 
-# ✅ Solution — Factory Method ব্যবহার করে ঠিক করা
+
+### ✅ Solution — Factory Method ব্যবহার করে ঠিক করা
 
 ### Step-by-Step (Good Example)
 
@@ -369,7 +582,7 @@ Output
 Preparing Chicken Pizza
 Preparing Veg Pizza
 ```
-# Step-by-Step: কেন এটা ভালো & কিভাবে উপরের ৩টা সমস্যা মিটায়
+### Step-by-Step: কেন এটা ভালো & কিভাবে উপরের ৩টা সমস্যা মিটায়
 
 ### 1. Product (Pizza)
 - একটি **abstract/interface** রাখা হলো যার উপর client কাজ করে (`Prepare()`, ইত্যাদি)  
@@ -391,9 +604,9 @@ Preparing Veg Pizza
 - প্রতিটি store **নির্দিষ্টভাবে `CreatePizza` implement** করে  
 - কোন store কোন pizza বানাবে তা **কেন্দ্রীয়ভাবে** ঠিক থাকে  
 
----
 
-# 💡 Problem Solving
+
+### 💡 Problem Solving
 
 ### 1. Repeated creation logic
 - আগে একই if/switch multiple services-এ ছিল  
@@ -410,27 +623,26 @@ Preparing Veg Pizza
   2. যে store chicken বানাবে, সেখানে `CreatePizza`-এ branch যোগ করা  
 - Client code **অপরিবর্তিত**  
 
----
 
-# ⚖️ Advantages
+### ⚖️ Advantages
 - Loose coupling (client depends on interface, not implementation)  
 - Easy to add new product classes  
 - Code maintainable হয়  
 
-# ❌ Disadvantages
+### ❌ Disadvantages
 - Class structure জটিল হয়ে যায় (extra subclass তৈরি করতে হয়)  
 
----------------
+---
 
-# 🍕 Real-Life Example – Pizza Store (Factory Method)
+### 🍕 Real-Life Example – Pizza Store (Factory Method)
 
 ধরি, আমাদের একটা **Pizza Store** আছে।  
 প্রতিটি ব্রাঞ্চ (`NewYorkPizzaStore`, `ChicagoPizzaStore`) আলাদা স্টাইলে pizza বানায়।  
 কিন্তু client শুধু **PizzaStore** থেকে pizza অর্ডার করে, কিভাবে বানানো হচ্ছে সেটা জানে না।  
 
----
 
-## UML-like Structure
+
+### UML-like Structure
 
 
 ```
@@ -451,7 +663,7 @@ ConcretePizzaStore (Concrete Creators)
 ````
 
 
-## ✅ Example Code (C#)
+### ✅ Example Code (C#)
 
 ```csharp
 // Product
@@ -515,22 +727,20 @@ Output
 Preparing Chicken Pizza
 Preparing Veg Pizza
 ```
-# 🍕 Explanation
+### 🍕 Explanation
 
 - Client শুধু **`PizzaStore.OrderPizza()`** use করছে  
 - কোন store থেকে অর্ডার দিচ্ছে তার উপর নির্ভর করছে কোন pizza বানানো হবে  
 - Client কে **CheesePizza vs VegPizza vs অন্য কিছু** জানতেই হচ্ছে না  
 
----
 
-# 🎯 Real-World Benefit
+### 🎯 Real-World Benefit
 
 - যদি নতুন Pizza যোগ করতে হয় (e.g., "ChickenPizza") →  
   শুধু নতুন **ConcretePizza** এবং **ConcretePizzaStore** এর rule update করলেই হবে  
 - Client code এ **কোনো পরিবর্তন** করতে হবে না
 
------
------
+
 ### 🏗  Factory Method (with Singleton + Strategy) 
 
 ```c#
@@ -641,7 +851,7 @@ class Program
 }
 ```
 
-# 🔔 Notification System Example (Combined Design Patterns)
+### 🔔 Notification System Example (Combined Design Patterns)
 
 এই উদাহরণে আমরা **তিনটি প্যাটার্ন একসাথে ব্যবহার** করছি:
 
@@ -649,9 +859,9 @@ class Program
 - **Strategy** → `NotifyContext` বিভিন্ন আচরণ (`send`, `log`, `save`) **composition** করে ব্যবহার করে (ইন্টারফেস ভিত্তিক)  
 - **Factory Method** → `INotificationContextCreator` এর **concrete creator** গুলো `NotifyContext` তৈরি করবে; Client কে object তৈরি নিয়ে চিন্তা করতে হবে না  
 
----
 
-## 1️⃣ Initial Problem
+
+### 1️⃣ Initial Problem
 
 প্রথমে আমরা Notification system বানাই।  
 এখানে **Email, SMS, Push notification** পাঠানো যায়।  
@@ -677,16 +887,16 @@ public class NotifyContext {
     }
 }
 ```
-# ❌ Problem
+### ❌ Problem
 
 - `Main()` এ Developer কে **object নিজে বানাতে হচ্ছে**  
 - কখন `null` দিতে হবে, কখন দিতে হবে না — এগুলো **মনে রাখতে লাগছে**  
   (যেমন PushNotify তে Save নাই, তাই `null` দিতে হবে)  
 - 👉 **Hard to use এবং error-prone**  
 
----
 
-## 2️⃣ Factory Method Idea
+
+### 2️⃣ Factory Method Idea
 
 সমাধান হলো, **object creation এর দায়িত্ব অন্য class কে দেওয়া**।  
 Developer শুধু **factory class** call করবে, factory **সঠিক object** বানিয়ে দিবে  
@@ -710,7 +920,7 @@ public class EmailNotificationContextCreator : INotificationContextCreator {
 👉 এখন developer কে object বানানোর চিন্তা করতে হবে না। শুধু factory call করলেই কাজ হবে।
 
 
-## 3️⃣ Singleton যোগ করা
+### 3️⃣ Singleton যোগ করা
 
 - Logging এর ক্ষেত্রে আমরা চাই **Logger এর একটাই object** পুরো application এ ব্যবহার হোক  
 - তাই এখানে **Singleton Pattern** use করা হলো  
@@ -741,7 +951,7 @@ public class Logger : ILogger {
 }
 ````
 
-# 3️⃣ Singleton যোগ করা
+### 3️⃣ Singleton যোগ করা
 
 - Logging এর ক্ষেত্রে আমরা চাই **Logger এর একটাই object** পুরো application এ ব্যবহার হোক  
 - তাই এখানে **Singleton Pattern** use করা হলো  
