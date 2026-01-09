@@ -4,8 +4,7 @@
 The **Factory Method Pattern** is a creational design pattern that **provides an interface for creating objects in a superclass**, but allows subclasses to decide which class to instantiate.
 
 
->**Factory Method Pattern** হলো একটি creational design pattern, যা object তৈরি করার জন্য একটি interface দেয়,  
-কিন্তু কোন class এর object তৈরি হবে সেটা নির্ধারণ করে **subclass**।
+>**Factory Method Pattern** হলো একটি creational design pattern, যা object তৈরি করার জন্য একটি interface দেয়,   কিন্তু কোন class এর object তৈরি হবে সেটা নির্ধারণ করে **subclass**।
 
 <br>
 
@@ -35,7 +34,9 @@ else if(type == "Rectangle")
 
 <br>
 
-### 🧩 Where It’s Used
+### 🧩 Used Case
+- **Logger** (File / Database / Cloud)
+- **Database Connection** (MySQL / PostgreSQL / MongoDB)
 - **GUI frameworks** (Button, Dialog)
 - **Game development** (Enemy, Weapon Factory)
 - **Notification system** (Email / SMS / Push)
@@ -368,7 +369,7 @@ Drawing Circle
 Drawing Square
 ```
 
-# 📊 When to Use Factory Method?
+## 📊 When to Use Factory Method?
 
 - যখন **object creation logic বারবার repeat** হচ্ছে  
 - যখন **client code কে নির্দিষ্ট class এর উপর নির্ভরশীল না করতে চাই**  
@@ -457,7 +458,7 @@ class Program {
 ```
 
 Output
-```
+```yaml
 Preparing Cheese Pizza
 Preparing Veg Pizza
 ```
@@ -578,7 +579,7 @@ class Program {
 }
 ```
 Output
-```
+```yaml
 Preparing Chicken Pizza
 Preparing Veg Pizza
 ```
@@ -723,7 +724,7 @@ class Program {
 ```
 
 Output
-```
+```yaml
 Preparing Chicken Pizza
 Preparing Veg Pizza
 ```
@@ -1120,7 +1121,7 @@ class Program {
 ```
 
 Output
-```
+```yaml
 Sending Email to test@test.com
 Logger created
 This is from log - Email Log: test@test.com
