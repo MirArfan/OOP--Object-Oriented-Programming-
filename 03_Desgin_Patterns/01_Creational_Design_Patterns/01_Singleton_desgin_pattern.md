@@ -160,15 +160,27 @@ Are they same? False
 ```c#
 using System;
 
+// 👉 sealed মানে:
+// এই class কে আর কেউ inherit করতে পারবে না
+// Singleton ভাঙা যাবে না (subclass বানিয়ে new করা যাবে না)
 public sealed class DatabaseConnection
 {
     // 1️⃣ Single instance holder
+    // 👉 এখানে একটাই object রাখা হবে
+    // 👉 static → পুরো application জুড়ে shared
+    // 👉 শুরুতে null থাকে (Lazy initialization)
     private static DatabaseConnection _instance = null;
 
+
     // Thread safety lock
+    // 👉 Multiple thread একসাথে আসলে
+    // 👉 একটামাত্র thread object তৈরি করতে পারবে
+    // 👉 readonly মানে: // assign একবারই করা যাবে
     private static readonly object _lock = new object();
 
+
     // 2️⃣ Private constructor
+    // বাইরে থেকে new DatabaseConnection() করা যাবে না
     private DatabaseConnection()
     {
         Console.WriteLine("Database connection opened (Only Once)");
@@ -179,6 +191,8 @@ public sealed class DatabaseConnection
     {
         if (_instance == null)
         {
+            // 👉 একসাথে একটাই thread ভিতরে ঢুকতে পারবে
+            // 👉 Thread-safe নিশ্চিত করে
             lock (_lock)
             {
                 if (_instance == null)
@@ -749,6 +763,8 @@ class Program {
 
         thread1.Join();
         thread2.Join();
+
+        Console.WriteLine($"Same connection? {ReferenceEquals(thread1, thread2)}");
     }
 }
 ```
@@ -757,6 +773,7 @@ class Program {
 ```yaml
 Logger created
 Logger created
+Same connection? False
 ```
 দুইবার instance তৈরি হলো → Thread safety সমস্যা।
 
