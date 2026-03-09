@@ -202,6 +202,128 @@ class Program {
 
 <br>
 
+
+
+
+### ❓ Destructor কী?
+
+**Destructor** হলো একটি special method যা **object destroy হওয়ার সময় automatically call হয়**।
+
+>A **Destructor** is a special method in a class that is automatically called when an object is destroyed.  
+Its main purpose is to release resources and perform cleanup before the object is removed from memory.
+
+
+এর কাজ হলো object ব্যবহার শেষ হলে **resources clean করা** (যেমন: memory, file handle, database connection ইত্যাদি)।
+
+সহজভাবে:
+
+- **Constructor → Object তৈরি হওয়ার সময় call হয়**
+- **Destructor → Object destroy হওয়ার সময় call হয়**
+
+<br>
+
+### Destructor এর সাধারণ নিয়ম (Rules)
+
+1. Destructor এর নাম class এর নামের আগে `~` দিয়ে লিখতে হয়।
+2. Destructor এ **কোন parameter থাকে না**।
+3. Destructor এর **কোন return type থাকে না**।
+4. Destructor **automatic ভাবে call হয়** (Garbage Collector এর মাধ্যমে)।
+5. এক ক্লাসে **শুধু একটি Destructor থাকতে পারে**।
+
+### Syntax
+
+```csharp
+~ClassName()
+{
+    // cleanup code
+}
+```
+
+
+
+### ✅ উদাহরণ (Example in C#)
+
+```csharp
+using System;
+
+class Student
+{
+    public string name;
+
+    // Constructor
+    public Student(string n)
+    {
+        name = n;
+        Console.WriteLine("Constructor called. Object Created");
+    }
+
+    // Destructor
+    ~Student()
+    {
+        Console.WriteLine("Destructor called. Object Destroyed");
+    }
+
+    public void ShowInfo()
+    {
+        Console.WriteLine("Name: " + name);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Student s1 = new Student("Arfan");
+        s1.ShowInfo();
+    }
+}
+```
+
+### Output (Conceptually)
+
+```
+Constructor called. Object Created
+Name: Arfan
+Destructor called. Object Destroyed
+```
+
+⚠️ **Note:**  
+C# এ Destructor কখন execute হবে তা নির্দিষ্ট না, কারণ এটি **Garbage Collector** এর উপর নির্ভর করে।
+
+
+
+### Destructor এর ব্যবহার (Use Cases)
+
+Destructor সাধারণত ব্যবহার করা হয় যখন:
+
+- File close করতে হয়
+- Database connection release করতে হয়
+- Network resource free করতে হয়
+- Unmanaged resources clean করতে হয়
+
+<br>
+
+### Constructor vs Destructor
+
+| Constructor | Destructor |
+|-------------|------------|
+| Object তৈরি হলে call হয় | Object destroy হলে call হয় |
+| Class name এর মতো | `~ClassName()` |
+| Parameter থাকতে পারে | Parameter থাকে না |
+| একাধিক থাকতে পারে | শুধু একটি |
+
+---
+
+#### গুরুত্বপূর্ণ পয়েন্ট
+
+- Destructor **manually call করা যায় না**।
+- Destructor **Garbage Collector call করে**।
+- এক ক্লাসে **একটি মাত্র Destructor থাকতে পারে**।
+
+<br>
+<br>
+
+
 ### ❓ Access Modifier কী?
 
 Access modifiers in OOP define the **visibility and accessibility** of classes, methods, and variables.  
